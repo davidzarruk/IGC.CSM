@@ -6,7 +6,7 @@
 install.packages('devtools')
 library('devtools')
 
-install_github("davidzarruk/IGCities")
+install_github("davidzarruk/IGCities", force = TRUE)
 library(IGCities)
 
 #-----------------#

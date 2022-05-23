@@ -2,7 +2,7 @@
 % Please edit documentation in R/model_functions.R
 \name{floorspace_supply}
 \alias{floorspace_supply}
-\title{Computes residential and comercial floorspace supply and equilibrium prices.}
+\title{Computes residential and commercial floorspace supply and equilibrium prices.}
 \usage{
 floorspace_supply(
   alpha1,
@@ -17,11 +17,29 @@ floorspace_supply(
 )
 }
 \arguments{
-\item{beta1}{}
+\item{alpha1}{Float - Utility parameter that determines preferences for
+consumption.}
+
+\item{H_bar_rest}{Float -}
+
+\item{H_bar}{Nx1 array - Land supply.}
+
+\item{w}{NxS - Wages in each location in each sector.}
+
+\item{y_bar}{\itemize{
+\item Average income in each location.
+}}
+
+\item{lambda_i}{Nx1 matrix - Number of residents in each location.}
+
+\item{L_bar}{Float - Total number of people in the city.}
+
+\item{beta1}{Float - Cobb-Douglas parameter for the production function on
+each sector.}
 }
 \value{
 
 }
 \description{
-Computes residential and comercial floorspace supply and equilibrium prices.
+Computes residential and commercial floorspace supply and equilibrium prices.
 }

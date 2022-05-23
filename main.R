@@ -57,59 +57,6 @@ lambda_i = read.csv("data/lambda_i.csv")
 #      (2) Solve Models      #
 #----------------------------#
 
-inversion_m_bl  = inversionModel_Eff(N=875,
-                                     S=3,
-                                     L_bar=1,
-                                     H_bar=read.csv("data/H_bar.csv"),
-                                     H_bar_rest=18,
-                                     tau=read.csv("data/tau.csv"),
-                                     lambda_i=read.csv("data/lambda_i.csv"),
-                                     lambda_is_i=read.csv("data/lambda_is_i.csv"),
-                                     L_j_data=read.csv("data/L_j_data.csv"),
-                                     zeta=0.1,
-                                     z_init=0.0001,
-                                     tol=10^-6,
-                                     maxiter=10,
-                                     alpha1=0.7,
-                                     beta0=0.7,
-                                     theta1=7,
-                                     eta1=1.5,
-                                     kappa1=2,
-                                     sigma0=6,
-                                     xi1=1.8,
-                                     nu_init=0.005,
-                                     F=1);
-#
-# # Solve model
-# results_m_bl  = solveModel1_Eff(N=875,
-#                                 S=3,
-#                                 L_bar=1,
-#                                 H_bar=read.csv("data/H_bar.csv"),
-#                                 H_bar_rest=18,
-#                                 tau=read.csv("data/tau.csv"),
-#                                 A=inversion_m_bl$A,
-#                                 u_eq=inversion_m_bl$u,
-#                                 B=inversion_m_bl$B,
-#                                 w_eq=inversion_m_bl$w,
-#                                 lambda_i=read.csv("data/lambda_i.csv"),
-#                                 lambda_is_i=read.csv("data/lambda_is_i.csv"),
-#                                 zeta=0.0001,
-#                                 tol=1e-10,
-#                                 maxiter=10,
-#                                 endo_Lr=1,
-#                                 alpha1=0.7,
-#                                 beta0=0.7,
-#                                 delta0=0.65,
-#                                 theta1=7,
-#                                 eta1=1.5,
-#                                 kappa1=2,
-#                                 xi1=1.8,
-#                                 sigma0=6,
-#                                 F=1);
-
-
-
-
 zeta = 0.1
 # Invert model
 inversion_m_bl  = inversionModel_Eff(N=N,
@@ -127,16 +74,12 @@ inversion_m_bl  = inversionModel_Eff(N=N,
                                      maxiter=maxiter,
                                      alpha1=alpha1,
                                      beta0=beta0,
-                                     delta0=delta0,
                                      theta1=theta1,
                                      eta1=eta1,
                                      kappa1=kappa1,
                                      sigma0=sigma0,
-                                     F=F,
-                                     nu_intervals = c(100, 1000, 10000, 1000000),
-                                     nu_mult = c(10, 50, 100, 100),
-                                     zeta_intervals = c(20, 100, 300, 500),
-                                     zeta_mult = c(500, 100, 50, 10));
+                                     xi1=xi1,
+                                     F=F);
 
 
 zeta = 0.0001
@@ -159,15 +102,64 @@ results_m_bl  = solveModel1_Eff(N=N,
                                 endo_Lr=endo_Lr,
                                 alpha1=alpha1,
                                 beta0=beta0,
-                                delta0=delta0,
                                 theta1=theta1,
                                 eta1=eta1,
                                 kappa1=kappa1,
                                 xi1=xi1,
                                 sigma0=sigma0,
-                                F=F);
+                                F=F)
 
-# ,
-# zeta_intervals = c(20, 100, 300, 500),
-# zeta_mult = c(500, 100, 50, 10)
 
+
+#---------------------#
+#      (3) Tests      #
+#---------------------#
+#
+# inversion_m_bl  = inversionModel_Eff(N=875,
+#                                      S=3,
+#                                      L_bar=1,
+#                                      H_bar=read.csv("data/H_bar.csv"),
+#                                      H_bar_rest=18,
+#                                      tau=read.csv("data/tau.csv"),
+#                                      lambda_i=read.csv("data/lambda_i.csv"),
+#                                      lambda_is_i=read.csv("data/lambda_is_i.csv"),
+#                                      L_j_data=read.csv("data/L_j_data.csv"),
+#                                      zeta=0.1,
+#                                      z_init=0.0001,
+#                                      tol=10^-6,
+#                                      maxiter=10,
+#                                      alpha1=0.7,
+#                                      beta0=0.7,
+#                                      theta1=7,
+#                                      eta1=1.5,
+#                                      kappa1=2,
+#                                      sigma0=6,
+#                                      xi1=1.8,
+#                                      nu_init=0.005,
+#                                      F=1);
+#
+# # Solve model
+# results_m_bl  = solveModel1_Eff(N=875,
+#                                 S=3,
+#                                 L_bar=1,
+#                                 H_bar=read.csv("data/H_bar.csv"),
+#                                 H_bar_rest=18,
+#                                 tau=read.csv("data/tau.csv"),
+#                                 A=inversion_m_bl$A,
+#                                 u_eq=inversion_m_bl$u,
+#                                 B=inversion_m_bl$B,
+#                                 w_eq=inversion_m_bl$w,
+#                                 lambda_i=read.csv("data/lambda_i.csv"),
+#                                 lambda_is_i=read.csv("data/lambda_is_i.csv"),
+#                                 zeta=0.0001,
+#                                 tol=1e-10,
+#                                 maxiter=10,
+#                                 endo_Lr=1,
+#                                 alpha1=0.7,
+#                                 beta0=0.7,
+#                                 theta1=7,
+#                                 eta1=1.5,
+#                                 kappa1=2,
+#                                 xi1=1.8,
+#                                 sigma0=6,
+#                                 F=1);

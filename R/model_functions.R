@@ -72,20 +72,30 @@ labor_productivity = function(N,
 
     iter = iter+1;
 
-    if(length(nu_mult) > 0){
-      if(length(nu_mult) != length(nu_intervals)){
-        stop(
-          "The array nu_mult must have the same size as the array nu_intervals."
-        )
-      } else{
-        nu_mult2 = c(1, nu_mult)
-        iiter = 1
-        while(iter > nu_intervals[iiter] & iiter <= length(nu_intervals)){
-          iiter = iiter+1
-        }
-        nu=nu_init*nu_mult2[iiter]
-      }
+    if(iter>100){
+      nu = nu_init*10;
+    } else if(iter>1000){
+      nu = nu_init*50;
+    } else if(iter>10000){
+      nu = nu_init*100;
+    } else if(iter>1000000){
+      break
     }
+
+    # if(length(nu_mult) > 0){
+    #   if(length(nu_mult) != length(nu_intervals)){
+    #     stop(
+    #       "The array nu_mult must have the same size as the array nu_intervals."
+    #     )
+    #   } else{
+    #     nu_mult2 = c(1, nu_mult)
+    #     iiter = 1
+    #     while(iter > nu_intervals[iiter] & iiter <= length(nu_intervals)){
+    #       iiter = iiter+1
+    #     }
+    #     nu=nu_init*nu_mult2[iiter]
+    #   }
+    # }
     print(paste(outerdiff, iter))
   }
 
@@ -446,19 +456,41 @@ eq_quantities = function(alpha1,
 
     print(outerdiff)
 
-    if(length(zeta_mult) > 0){
-      if(length(zeta_mult) != length(zeta_intervals)){
-        stop(
-          "The array zeta_mult must have the same size as the array zeta_intervals."
-        )
-      } else{
-        iiter = 1
-        while(iter > zeta_intervals[iiter] & iiter <= length(zeta_intervals)){
-          iiter = iiter+1
-        }
-        zeta=zeta_init*zeta_mult[iiter]
-      }
+    if(outerdiff<500){
+      zeta = zeta_init*10;
     }
+    if(outerdiff<300){
+      zeta = zeta_init*50;
+    }
+    if(outerdiff<100){
+      zeta = zeta_init*100;
+    }
+    if(outerdiff<20){
+      zeta = zeta_init*500;
+    }
+    if(outerdiff<10){
+      zeta = zeta_init*500;
+    }
+    if(outerdiff<1){
+      zeta = zeta_init*500;
+    }
+    if(iter>100000){
+      break
+    }
+
+    # if(length(zeta_mult) > 0){
+    #   if(length(zeta_mult) != length(zeta_intervals)){
+    #     stop(
+    #       "The array zeta_mult must have the same size as the array zeta_intervals."
+    #     )
+    #   } else{
+    #     iiter = 1
+    #     while(iter > zeta_intervals[iiter] & iiter <= length(zeta_intervals)){
+    #       iiter = iiter+1
+    #     }
+    #     zeta=zeta_init*zeta_mult[iiter]
+    #   }
+    # }
   }
 
   # Amenity parameters

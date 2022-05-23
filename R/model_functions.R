@@ -363,6 +363,21 @@ total_sales = function(N,
   return(list(X=X, Y_js=Y_js))
 }
 
+
+#' Title
+#'
+#' @param sigma_cons
+#' @param w
+#' @param L_j_eff
+#' @param beta_factor
+#' @param Y_js
+#' @param A
+#' @param inv_sigma
+#'
+#' @return
+#' @export
+#'
+#' @examples
 new_labor_demand = function(sigma_cons,
                             w,
                             L_j_eff,
@@ -380,6 +395,38 @@ new_labor_demand = function(sigma_cons,
   return(list(inv_sigma=inv_sigma, LS=LS, LD=LD, LD_A=LD_A, A_prime=A_prime))
 }
 
+
+#' Title
+#'
+#' @param alpha1
+#' @param beta1
+#' @param eta1
+#' @param kappa1
+#' @param sigma1
+#' @param xi1
+#' @param L_bar
+#' @param H_bar
+#' @param H_bar_rest
+#' @param N
+#' @param S
+#' @param A_init
+#' @param lambda_i
+#' @param lambda_is_i
+#' @param w
+#' @param W_is
+#' @param B
+#' @param lambda_ijs_is
+#' @param zeta_init
+#' @param zeta
+#' @param tol
+#' @param maxiter
+#' @param zeta_mult
+#' @param zeta_intervals
+#'
+#' @return
+#' @export
+#'
+#' @examples
 eq_quantities = function(alpha1,
                          beta1,
                          eta1,
@@ -545,6 +592,38 @@ living_amenities = function(eta1,
 
 
 
+#' Title
+#'
+#' @param N
+#' @param S
+#' @param L_bar
+#' @param H_bar
+#' @param H_bar_rest
+#' @param tau
+#' @param lambda_i
+#' @param lambda_is_i
+#' @param L_j_data
+#' @param zeta
+#' @param z_init
+#' @param tol
+#' @param maxiter
+#' @param alpha1
+#' @param beta0
+#' @param theta1
+#' @param eta1
+#' @param kappa1
+#' @param sigma0
+#' @param xi1
+#' @param nu_init
+#' @param nu_intervals
+#' @param nu_mult
+#' @param zeta_intervals
+#' @param zeta_mult
+#'
+#' @return
+#' @export
+#'
+#' @examples
 inversionModel_Eff = function(N,
                               S,
                               L_bar,
@@ -669,6 +748,36 @@ inversionModel_Eff = function(N,
   return(list(A=A, u=u, B=B, w=w))
 }
 
+#' Title
+#'
+#' @param N
+#' @param S
+#' @param L_bar
+#' @param H_bar
+#' @param H_bar_rest
+#' @param tau
+#' @param A
+#' @param u_eq
+#' @param B
+#' @param w_eq
+#' @param lambda_i
+#' @param lambda_is_i
+#' @param zeta
+#' @param tol
+#' @param maxiter
+#' @param endo_Lr
+#' @param alpha1
+#' @param beta0
+#' @param theta1
+#' @param eta1
+#' @param kappa1
+#' @param xi1
+#' @param sigma0
+#'
+#' @return
+#' @export
+#'
+#' @examples
 solveModel1_Eff = function(N,
                            S,
                            L_bar,

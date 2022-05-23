@@ -591,27 +591,38 @@ living_amenities = function(eta1,
 }
 
 
-
-#' Title
+#' Function to invert model, so amenities and wages are chosen to match model
+#' to data.
 #'
-#' @param N
-#' @param S
+#' @param N Integer - Number of locations.
+#' @param S Integer - Number of sectors in the economy.
 #' @param L_bar
 #' @param H_bar
 #' @param H_bar_rest
-#' @param tau
-#' @param lambda_i
-#' @param lambda_is_i
-#' @param L_j_data
-#' @param zeta
+#' @param tau NxN matrix - Commuting costs between all possible locations.
+#' @param lambda_i Nx1 matrix - Number of residents in each location.
+#' @param lambda_is_i NxS matrix - Proportion of residents in each location in
+#'     each sector. Rows add up to 1.
+#' @param L_j_data NxS matrix - Total amount of workers in each location in each
+#'     sector.
+#' @param zeta Int - Convergence parameter for amenities
 #' @param z_init
 #' @param tol
-#' @param maxiter
-#' @param alpha1
+#' @param maxiter Integer - Maximum number of iterations for convergence.
+#'     Default maxiter=1000.
+#' @param alpha1 Float - Utility parameter that determines preferences for
+#'     consumption.
 #' @param beta0
-#' @param theta1
+#' @param theta1 Float - Commuting elasticity.
 #' @param eta1
-#' @param kappa1
+#' @param kappa1 Float - Parameter that governs the reallocation of workers
+#'     across sectors. It measures how easy it is for workers to substitute
+#'     jobs across sectors. In the case in which it tends to infity, the model
+#'     replicates the case in which there are no frictions in the labor market,
+#'     and workers are perfectly mobile across sectors. The case in which it
+#'     tends to one replicates the specific factor model in which workers are
+#'     only productive in one sector. Then, they do not switch jobs across
+#'     industries.
 #' @param sigma0
 #' @param xi1
 #' @param nu_init
@@ -748,29 +759,40 @@ inversionModel_Eff = function(N,
   return(list(A=A, u=u, B=B, w=w))
 }
 
-#' Title
+
+#' Function to solve counterfactuals.
 #'
-#' @param N
-#' @param S
+#' @param N Integer - Number of locations.
+#' @param S Integer - Number of sectors in the economy.
 #' @param L_bar
 #' @param H_bar
 #' @param H_bar_rest
-#' @param tau
+#' @param tau NxN matrix - Commuting costs between all possible locations.
 #' @param A
 #' @param u_eq
 #' @param B
 #' @param w_eq
-#' @param lambda_i
-#' @param lambda_is_i
+#' @param lambda_i Nx1 matrix - Number of residents in each location.
+#' @param lambda_is_i NxS matrix - Proportion of residents in each location in
+#'     each sector. Rows add up to 1.
 #' @param zeta
 #' @param tol
-#' @param maxiter
+#' @param maxiter Integer - Maximum number of iterations for convergence.
+#'     Default maxiter=1000.
 #' @param endo_Lr
-#' @param alpha1
+#' @param alpha1 Float - Utility parameter that determines preferences for
+#'     consumption.
 #' @param beta0
-#' @param theta1
+#' @param theta1 Float - Commuting elasticity.
 #' @param eta1
-#' @param kappa1
+#' @param kappa1 Float - Parameter that governs the reallocation of workers
+#'     across sectors. It measures how easy it is for workers to substitute
+#'     jobs across sectors. In the case in which it tends to infity, the model
+#'     replicates the case in which there are no frictions in the labor market,
+#'     and workers are perfectly mobile across sectors. The case in which it
+#'     tends to one replicates the specific factor model in which workers are
+#'     only productive in one sector. Then, they do not switch jobs across
+#'     industries.
 #' @param xi1
 #' @param sigma0
 #'

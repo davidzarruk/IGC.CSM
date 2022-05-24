@@ -89,7 +89,7 @@ industries.}
 \item{sigma0}{TODO}
 }
 \value{
-
+Counterfactual values.
 }
 \description{
 Function to solve counterfactuals.

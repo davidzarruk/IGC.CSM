@@ -796,8 +796,8 @@ inversionModel_Eff = function(N,
 #' @param xi1 TODO
 #' @param sigma0 TODO
 #'
-#' @return
-#' @export Counterfactual values.
+#' @return Counterfactual values.
+#' @export
 #'
 #' @examples
 solveModel1_Eff = function(N,

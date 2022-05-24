@@ -596,9 +596,9 @@ living_amenities = function(eta1,
 #'
 #' @param N Integer - Number of locations.
 #' @param S Integer - Number of sectors in the economy.
-#' @param L_bar
-#' @param H_bar
-#' @param H_bar_rest
+#' @param L_bar TODO
+#' @param H_bar TODO
+#' @param H_bar_rest TODO
 #' @param tau NxN matrix - Commuting costs between all possible locations.
 #' @param lambda_i Nx1 matrix - Number of residents in each location.
 #' @param lambda_is_i NxS matrix - Proportion of residents in each location in
@@ -606,15 +606,15 @@ living_amenities = function(eta1,
 #' @param L_j_data NxS matrix - Total amount of workers in each location in each
 #'     sector.
 #' @param zeta Int - Convergence parameter for amenities
-#' @param z_init
-#' @param tol
+#' @param z_init TODO
+#' @param tol TODO
 #' @param maxiter Integer - Maximum number of iterations for convergence.
 #'     Default maxiter=1000.
 #' @param alpha1 Float - Utility parameter that determines preferences for
 #'     consumption.
-#' @param beta0
+#' @param beta0 TODO
 #' @param theta1 Float - Commuting elasticity.
-#' @param eta1
+#' @param eta1 TODO
 #' @param kappa1 Float - Parameter that governs the reallocation of workers
 #'     across sectors. It measures how easy it is for workers to substitute
 #'     jobs across sectors. In the case in which it tends to infity, the model
@@ -623,15 +623,15 @@ living_amenities = function(eta1,
 #'     tends to one replicates the specific factor model in which workers are
 #'     only productive in one sector. Then, they do not switch jobs across
 #'     industries.
-#' @param sigma0
-#' @param xi1
-#' @param nu_init
-#' @param nu_intervals
-#' @param nu_mult
-#' @param zeta_intervals
-#' @param zeta_mult
+#' @param sigma0 TODO
+#' @param xi1 TODO
+#' @param nu_init TODO
+#' @param nu_intervals TODO
+#' @param nu_mult TODO
+#' @param zeta_intervals TODO
+#' @param zeta_mult TODO
 #'
-#' @return
+#' @return Equilibrium values.
 #' @export
 #'
 #' @examples
@@ -764,27 +764,27 @@ inversionModel_Eff = function(N,
 #'
 #' @param N Integer - Number of locations.
 #' @param S Integer - Number of sectors in the economy.
-#' @param L_bar
-#' @param H_bar
-#' @param H_bar_rest
+#' @param L_bar TODO
+#' @param H_bar TODO
+#' @param H_bar_rest TODO
 #' @param tau NxN matrix - Commuting costs between all possible locations.
-#' @param A
-#' @param u_eq
-#' @param B
-#' @param w_eq
+#' @param A TODO
+#' @param u_eq TODO
+#' @param B TODO
+#' @param w_eq TODO
 #' @param lambda_i Nx1 matrix - Number of residents in each location.
 #' @param lambda_is_i NxS matrix - Proportion of residents in each location in
 #'     each sector. Rows add up to 1.
-#' @param zeta
-#' @param tol
+#' @param zeta TODO
+#' @param tol TODO
 #' @param maxiter Integer - Maximum number of iterations for convergence.
 #'     Default maxiter=1000.
-#' @param endo_Lr
+#' @param endo_Lr TODO
 #' @param alpha1 Float - Utility parameter that determines preferences for
 #'     consumption.
-#' @param beta0
+#' @param beta0 TODO
 #' @param theta1 Float - Commuting elasticity.
-#' @param eta1
+#' @param eta1 TODO
 #' @param kappa1 Float - Parameter that governs the reallocation of workers
 #'     across sectors. It measures how easy it is for workers to substitute
 #'     jobs across sectors. In the case in which it tends to infity, the model
@@ -793,11 +793,11 @@ inversionModel_Eff = function(N,
 #'     tends to one replicates the specific factor model in which workers are
 #'     only productive in one sector. Then, they do not switch jobs across
 #'     industries.
-#' @param xi1
-#' @param sigma0
+#' @param xi1 TODO
+#' @param sigma0 TODO
 #'
 #' @return
-#' @export
+#' @export Counterfactual values.
 #'
 #' @examples
 solveModel1_Eff = function(N,

@@ -2,7 +2,7 @@
 % Please edit documentation in R/model_functions.R
 \name{solveModel1_Eff}
 \alias{solveModel1_Eff}
-\title{Title}
+\title{Function to solve counterfactuals.}
 \usage{
 solveModel1_Eff(
   N,
@@ -32,11 +32,39 @@ solveModel1_Eff(
 )
 }
 \arguments{
+\item{N}{Integer - Number of locations.}
+
+\item{S}{Integer - Number of sectors in the economy.}
+
+\item{tau}{NxN matrix - Commuting costs between all possible locations.}
+
+\item{lambda_i}{Nx1 matrix - Number of residents in each location.}
+
+\item{lambda_is_i}{NxS matrix - Proportion of residents in each location in
+each sector. Rows add up to 1.}
+
+\item{maxiter}{Integer - Maximum number of iterations for convergence.
+Default maxiter=1000.}
+
+\item{alpha1}{Float - Utility parameter that determines preferences for
+consumption.}
+
+\item{theta1}{Float - Commuting elasticity.}
+
+\item{kappa1}{Float - Parameter that governs the reallocation of workers
+across sectors. It measures how easy it is for workers to substitute
+jobs across sectors. In the case in which it tends to infity, the model
+replicates the case in which there are no frictions in the labor market,
+and workers are perfectly mobile across sectors. The case in which it
+tends to one replicates the specific factor model in which workers are
+only productive in one sector. Then, they do not switch jobs across
+industries.}
+
 \item{sigma0}{}
 }
 \value{
 
 }
 \description{
-Title
+Function to solve counterfactuals.
 }

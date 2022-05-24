@@ -39,6 +39,12 @@ inversionModel_Eff(
 
 \item{S}{Integer - Number of sectors in the economy.}
 
+\item{L_bar}{TODO}
+
+\item{H_bar}{TODO}
+
+\item{H_bar_rest}{TODO}
+
 \item{tau}{NxN matrix - Commuting costs between all possible locations.}
 
 \item{lambda_i}{Nx1 matrix - Number of residents in each location.}
@@ -51,13 +57,21 @@ sector.}
 
 \item{zeta}{Int - Convergence parameter for amenities}
 
+\item{z_init}{TODO}
+
+\item{tol}{TODO}
+
 \item{maxiter}{Integer - Maximum number of iterations for convergence.
 Default maxiter=1000.}
 
 \item{alpha1}{Float - Utility parameter that determines preferences for
 consumption.}
 
+\item{beta0}{TODO}
+
 \item{theta1}{Float - Commuting elasticity.}
+
+\item{eta1}{TODO}
 
 \item{kappa1}{Float - Parameter that governs the reallocation of workers
 across sectors. It measures how easy it is for workers to substitute
@@ -68,10 +82,22 @@ tends to one replicates the specific factor model in which workers are
 only productive in one sector. Then, they do not switch jobs across
 industries.}
 
-\item{zeta_mult}{}
+\item{sigma0}{TODO}
+
+\item{xi1}{TODO}
+
+\item{nu_init}{TODO}
+
+\item{nu_intervals}{TODO}
+
+\item{nu_mult}{TODO}
+
+\item{zeta_intervals}{TODO}
+
+\item{zeta_mult}{TODO}
 }
 \value{
-
+Equilibrium values.
 }
 \description{
 Function to invert model, so amenities and wages are chosen to match model

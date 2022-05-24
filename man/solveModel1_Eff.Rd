@@ -36,20 +36,44 @@ solveModel1_Eff(
 
 \item{S}{Integer - Number of sectors in the economy.}
 
+\item{L_bar}{TODO}
+
+\item{H_bar}{TODO}
+
+\item{H_bar_rest}{TODO}
+
 \item{tau}{NxN matrix - Commuting costs between all possible locations.}
+
+\item{A}{TODO}
+
+\item{u_eq}{TODO}
+
+\item{B}{TODO}
+
+\item{w_eq}{TODO}
 
 \item{lambda_i}{Nx1 matrix - Number of residents in each location.}
 
 \item{lambda_is_i}{NxS matrix - Proportion of residents in each location in
 each sector. Rows add up to 1.}
 
+\item{zeta}{TODO}
+
+\item{tol}{TODO}
+
 \item{maxiter}{Integer - Maximum number of iterations for convergence.
 Default maxiter=1000.}
+
+\item{endo_Lr}{TODO}
 
 \item{alpha1}{Float - Utility parameter that determines preferences for
 consumption.}
 
+\item{beta0}{TODO}
+
 \item{theta1}{Float - Commuting elasticity.}
+
+\item{eta1}{TODO}
 
 \item{kappa1}{Float - Parameter that governs the reallocation of workers
 across sectors. It measures how easy it is for workers to substitute
@@ -60,7 +84,9 @@ tends to one replicates the specific factor model in which workers are
 only productive in one sector. Then, they do not switch jobs across
 industries.}
 
-\item{sigma0}{}
+\item{xi1}{TODO}
+
+\item{sigma0}{TODO}
 }
 \value{
 

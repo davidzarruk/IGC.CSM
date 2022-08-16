@@ -110,8 +110,6 @@ labor_productivity = function(N,
 #' @return A NxN matrix of commuting costs
 #' 
 #' @export
-#' 
-#' @examples 
 commuting_matrix = function(t_ij,
                             epsilon){
   tau = exp(epsilon*t_ij)
@@ -139,8 +137,6 @@ commuting_matrix = function(t_ij,
 #' @return A list with equilibrium wages and probability of workers in each
 #'     location working in every other location.
 #' @export
-#'
-#' @examples
 wages_inversion = function(N,
                            w_init,
                            theta,
@@ -339,8 +335,6 @@ av_income = function(lambda_is_i,
 #'
 #' @return
 #' @export
-#'
-#' @examples
 av_income_simple = function(lambda_ij_i,
                      w_tr){
   
@@ -365,8 +359,6 @@ av_income_simple = function(lambda_ij_i,
 #'
 #' @return
 #' @export
-#'
-#' @examples
 density_development = function(Q,
                                K,
                                w,
@@ -772,8 +764,6 @@ eq_quantities = function(alpha1,
 #'
 #' @return Matrix with the amenity distribution of living in each location.
 #' @export
-#'
-#' @examples
 living_amenities = function(eta1,
                               lambda_i,
                               u_init,
@@ -815,8 +805,6 @@ living_amenities = function(eta1,
 #'
 #' @return Matrix with the amenity distribution of living in each location.
 #' @export
-#'
-#' @examples
 living_amenities_simple = function(theta,
                             N,
                             L_i,
@@ -1039,8 +1027,6 @@ inversionModel_Eff = function(N,
 #'
 #' @return Equilibrium values.
 #' @export
-#'
-#' @examples
 inversionModel = function(N,
                           L_i,
                           L_j,

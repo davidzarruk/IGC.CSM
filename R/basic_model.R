@@ -1,5 +1,5 @@
+
 #' Function to transform travel times into iceberg commuting costs
-#' 
 #' @param t_ij NxN matrix - Travel time matrix across locations
 #' @param delta Float - Parameter that transforms travel times to commuting costs
 #' 
@@ -7,7 +7,7 @@
 #' 
 #' @export
 #' 
-#' @examples 
+#'  @examples 
 commuting_matrix = function(t_ij,
                             epsilon){
   tau = exp(epsilon*t_ij)
@@ -38,23 +38,23 @@ commuting_matrix = function(t_ij,
 #'
 #' @examples
 wages_inversion = function(N,
-                          w_init,
-                          theta,
-                          tau,
-                          L_i,
-                          L_j,
-                          nu_init=0.05,
-                          tol=10^-10,
-                          maxiter=10000,
-                          nu_mult=c(),
-                          nu_intervals=c()){
-
+                           w_init,
+                           theta,
+                           tau,
+                           L_i,
+                           L_j,
+                           nu_init=0.05,
+                           tol=10^-10,
+                           maxiter=10000,
+                           nu_mult=c(),
+                           nu_intervals=c()){
+  
   # Settings
   outerdiff = Inf
   w = w_init
   iter = 0
   nu = nu_init
-
+  
   while(outerdiff>tol & iter<maxiter){
     # 1) Labor supply
     # Indirect utility
@@ -68,10 +68,10 @@ wages_inversion = function(N,
     # Labor is equal to probabilities * total number of residents * proportion of workers in each sector.
     L_ij = array_operator(L_i, lambda_ij_i, '*')
     L_j_tr = sumDims2(L_ij, 1)
-#    L_j_model = aperm(L_j_tr, c(2, 1));
+    #    L_j_model = aperm(L_j_tr, c(2, 1));
     Ratio_supply = array_operator(L_j_tr, w, "/");
     w_prime = array_operator(L_j, Ratio_supply, "/");
-
+    
     z_L = array_operator(w, w_prime, '-');
     w = array_operator(w*(1-nu), w_prime*nu, '+');
     w_mean = exp(mean(log(w)))
@@ -79,7 +79,7 @@ wages_inversion = function(N,
     outerdiff = max(abs(z_L))
     
     iter = iter+1;
-
+    
     if(iter>100){
       nu = nu_init*10;
     } else if(iter>1000){
@@ -87,7 +87,7 @@ wages_inversion = function(N,
     } else if(iter>1000000){
       break
     }
-
+    
     # if(length(nu_mult) > 0){
     #   if(length(nu_mult) != length(nu_intervals)){
     #     stop(
@@ -104,9 +104,10 @@ wages_inversion = function(N,
     # }
     print(paste(outerdiff, iter))
   }
-
+  
   return(list(w=w, w_tr=w_tr, W_i=W_i, lambda_ij_i=lambda_ij_i, L_j_model=L_j_model))
 }
+
 
 
 #' Computes average income in each location, which is the weighted average of
@@ -120,12 +121,14 @@ wages_inversion = function(N,
 #' @export
 #'
 #' @examples
-av_income = function(lambda_ij_i,
-                     w_tr){
-
+av_income_simple = function(lambda_ij_i,
+                            w_tr){
+  
   y_bar = (sumDims2(array_operator(lambda_ij_i, w_tr, '*'), 2));
   return(list(y_bar=y_bar))
 }
+
+
 
 #' Computes residential and commercial floorspace supply and equilibrium prices.
 #'
@@ -153,7 +156,7 @@ density_development = function(Q,
                                beta,
                                alpha,
                                mu){
-
+  
   Q_mean = exp(mean(log(Q)));
   Q_norm = Q/Q_mean;
   FS_f = ((1-beta)/beta)*(array_operator(array_operator(w, L_j, '*'), Q_norm, '/'));
@@ -162,6 +165,8 @@ density_development = function(Q,
   varphi = array_operator(FS, K^(1-mu), '/'); 
   return(list(Q_mean = Q_mean, Q_norm = Q_norm, FS_f = FS_f, FS_r = FS_r, FS = FS, varphi=varphi))
 }
+
+
 
 #' Computes productivity levels in each location
 #'
@@ -185,7 +190,7 @@ productivity = function(N,
                         t_ij,
                         delta,
                         lambda){
-
+  
   Q_mean = exp(mean(log(Q)));
   Q_norm = Q/Q_mean;
   beta_tilde = ((1-beta)^(1-beta))*(beta^beta); 
@@ -198,6 +203,8 @@ productivity = function(N,
   a = a*(L_j>0)
   return(list(A = A, a = a))
 }
+
+
 
 #' Function to estimate amenity parameters of locations where users live.
 #'
@@ -216,15 +223,15 @@ productivity = function(N,
 #' @export
 #'
 #' @examples
-living_amenities = function(theta,
-                            N,
-                            L_i,
-                            W_i,
-                            Q,
-                            alpha,
-                            t_ij,
-                            rho,
-                            eta){
+living_amenities_simple = function(theta,
+                                   N,
+                                   L_i,
+                                   W_i,
+                                   Q,
+                                   alpha,
+                                   t_ij,
+                                   rho,
+                                   eta){
   Q_mean = exp(mean(log(Q)));
   Q_norm = Q/Q_mean;
   L_i_mean = exp(mean(log(L_i)));
@@ -294,35 +301,35 @@ inversionModel = function(N,
                           nu_mult = c(),
                           zeta_intervals = c(),
                           zeta_mult = c()){
-
+  
   # Formatting of input data
   L_i = array(unlist(L_i), dim(L_i))
   L_j = array(unlist(L_j), dim(L_j))
   K = array(unlist(K), dim(K))  
   Q = array(unlist(Q), dim(Q))
   t_ij = array(unlist(t_ij), dim(t_ij))  
-
+  
   # Initialization
   w_init=array(1, dim=c(N,1))
-
+  
   # Transformation of travel times to trade costs
   D = commuting_matrix(t_ij=t_ij, 
-                         epsilon=epsilon)
+                       epsilon=epsilon)
   tau = D$tau
-
+  
   # Finding the wages that match the data
   WI = wages_inversion(N=N,
-                     w_init=w_init,
-                     theta=theta,
-                     tau=tau,
-                     L_i=L_i,
-                     L_j=L_j,
-                     nu_init=nu_init,
-                     tol=tol,
-                     maxiter=maxiter,
-                     nu_intervals = nu_intervals,
-                     nu_mult = nu_mult)
-
+                       w_init=w_init,
+                       theta=theta,
+                       tau=tau,
+                       L_i=L_i,
+                       L_j=L_j,
+                       nu_init=nu_init,
+                       tol=tol,
+                       maxiter=maxiter,
+                       nu_intervals = nu_intervals,
+                       nu_mult = nu_mult)
+  
   # Equilibrium wages
   w = WI$w
   w_tr = WI$w_tr
@@ -330,9 +337,9 @@ inversionModel = function(N,
   lambda_ij_i = WI$lambda_ij_i
   
   # Average income
-  Inc = av_income(lambda_ij_i=lambda_ij_i,
-                   w_tr = w_tr
-                  )
+  Inc = av_income_simple(lambda_ij_i=lambda_ij_i,
+                         w_tr = w_tr
+  )
   ybar = Inc$y_bar
   
   
@@ -346,7 +353,7 @@ inversionModel = function(N,
                               beta=beta,
                               alpha=alpha,
                               mu=mu
-                              )
+  )
   Q_mean = DensD$Q_mean
   Q_norm = DensD$Q_norm
   FS_f = DensD$FS_f
@@ -354,42 +361,44 @@ inversionModel = function(N,
   FS = DensD$FS
   varphi = DensD$varphi
   ttheta = FS_f/FS
-
+  
   #Productivities
   Prod = productivity(N=N,
                       Q=Q,
                       w=w,
-                      L_j=L_j, 
+                      L_j=L_j,
                       K=K,
                       t_ij = t_ij,
                       delta=delta,
                       lambda=lambda
-                     )
+  )
   A = Prod$A
   a = Prod$a
   
   # Amenities
-  AM = living_amenities(theta=theta,
-                 N=N,
-                 L_i=L_i,
-                 W_i=W_i,
-                 Q=Q,
-                 alpha=alpha,
-                 t_ij=t_ij,
-                 rho=rho,
-                 eta=eta
-                 )
-
+  AM = living_amenities_simple(theta=theta,
+                               N=N,
+                               L_i=L_i,
+                               W_i=W_i,
+                               Q=Q,
+                               alpha=alpha,
+                               t_ij=t_ij,
+                               rho=rho,
+                               eta=eta
+  )
+  
   B = AM$B
   b = AM$b  
-
+  
   # Save and export
   Q_alpha = Q_norm^(1-alpha)
   u = array_operator(array_operator(W_i,Q_alpha,'/'),B,'*')
   U = (sumDims(array_operator(u, array_operator(U_i, theta, '^'), '*'),1))^(1/theta)
-
+  
   return(list(A=A, a=a, u=u, B=B, b=b, w=w, varphi=varphi, U=U, Q_norm=Q_norm))
 }
+
+
 
 
 #' Function to solve counterfactuals.

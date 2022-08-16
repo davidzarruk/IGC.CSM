@@ -111,7 +111,7 @@ labor_productivity = function(N,
 #' 
 #' @export
 #' 
-#'  @examples 
+#' @examples 
 commuting_matrix = function(t_ij,
                             epsilon){
   tau = exp(epsilon*t_ij)

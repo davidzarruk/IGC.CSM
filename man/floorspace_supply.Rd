@@ -37,9 +37,6 @@ consumption.}
 \item{beta1}{Float - Cobb-Douglas parameter for the production function on
 each sector.}
 }
-\value{
-
-}
 \description{
 Computes residential and commercial floorspace supply and equilibrium prices.
 }

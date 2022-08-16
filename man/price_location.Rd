@@ -22,9 +22,6 @@ price_location(N, sigma1, beta_factor, w, q, A)
 
 \item{A}{}
 }
-\value{
-
-}
 \description{
 Computes prices charged by firms in each location to consumers in each
 location.

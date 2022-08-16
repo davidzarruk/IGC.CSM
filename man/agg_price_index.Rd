@@ -9,9 +9,6 @@ agg_price_index(sigma1, xi1, M, p_j, sigma1_tr, inv_sigma)
 \arguments{
 \item{inv_sigma}{}
 }
-\value{
-
-}
 \description{
 Title
 }

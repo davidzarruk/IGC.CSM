@@ -31,9 +31,6 @@ location of working in each location and each sector.}
 
 \item{lambda_i}{Nx1 matrix - Number of residents in each location.}
 }
-\value{
-
-}
 \description{
 Computes average income in each location, which is the weighted average of
 the income of the people living in the location.

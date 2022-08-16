@@ -9,9 +9,6 @@ new_labor_demand(sigma_cons, w, L_j_eff, beta_factor, Y_js, A, inv_sigma)
 \arguments{
 \item{inv_sigma}{}
 }
-\value{
-
-}
 \description{
 Title
 }

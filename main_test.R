@@ -9,6 +9,8 @@ library('devtools')
 install_github("davidzarruk/IGCities", force = TRUE)
 library(IGCities)
 
+setwd("Documents/IGCities/")
+
 #-----------------#
 #   Parameters    #
 #-----------------#

@@ -1,6 +1,6 @@
 
 library(roxygen2)
-setwd('/home/david/Documents/IGCities/')
+setwd('Documents/IGCities/')
 rm(list = ls())
 
 roxygenise()
@@ -53,11 +53,42 @@ lambda_is_i = read.csv("data/lambda_is_i.csv")
 lambda_i = read.csv("data/lambda_i.csv")
 
 
-#----------------------------#
-#      (2) Solve Models      #
-#----------------------------#
+#-------------------------------------#
+#      (2) Solve Models (simple)      #
+#-------------------------------------#
 
 zeta = 0.1
+
+# Invert model
+inversion_m_bl = inversionModel(N,
+                                L_i,
+                                L_j,
+                                Q,
+                                K,
+                                t_ij,
+                                zeta,
+                                z_init,
+                                tol=10^-10,
+                                maxiter=1000,
+                                alpha,
+                                beta,
+                                theta,
+                                delta,
+                                rho,
+                                lambda,
+                                epsilon,
+                                mu,
+                                nu_init=0.005,
+                                nu_intervals = c(),
+                                nu_mult = c(),
+                                zeta_intervals = c(),
+                                zeta_mult = c())
+
+
+#-------------------------------------#
+#      (2) Solve Models (complex)     #
+#-------------------------------------#
+
 # Invert model
 inversion_m_bl  = inversionModel_Eff(N=N,
                                      S=S,

@@ -24,9 +24,6 @@ each sector.}
 \item Commercial floorspace prices.
 }}
 }
-\value{
-
-}
 \description{
 Computes number of firms
 }

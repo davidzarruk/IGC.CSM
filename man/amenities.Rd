@@ -36,9 +36,6 @@ Default tol=10^-6.}
 \item{maxiter}{Integer - Maximum number of iterations for convergence.
 Default maxiter=1000.}
 }
-\value{
-
-}
 \description{
 Function to recover the amenity distribution of working in each location.
 Finds B's that make the probability of working in each sector in equation

@@ -35,9 +35,6 @@ eq_quantities(
 \arguments{
 \item{zeta_intervals}{}
 }
-\value{
-
-}
 \description{
 Title
 }

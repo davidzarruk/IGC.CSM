@@ -5,8 +5,6 @@
 #' 
 #' @return A NxN matrix of commuting costs
 #' 
-#' @export
-#' 
 #' @examples 
 commuting_matrix = function(t_ij,
                             epsilon){
@@ -34,7 +32,6 @@ commuting_matrix = function(t_ij,
 #'
 #' @return A list with equilibrium wages and probability of workers in each
 #'     location working in every other location.
-#' @export
 #'
 #' @examples
 wages_inversion = function(N,
@@ -105,7 +102,7 @@ wages_inversion = function(N,
     print(paste(outerdiff, iter))
   }
   
-  return(list(w=w, w_tr=w_tr, W_i=W_i, lambda_ij_i=lambda_ij_i, L_j_model=L_j_model))
+  return(list(w=w, w_tr=w_tr, W_i=W_i, lambda_ij_i=lambda_ij_i))
 }
 
 
@@ -118,7 +115,6 @@ wages_inversion = function(N,
 #' @param w NxS - Wages in each location in each sector.
 #'
 #' @return
-#' @export
 #'
 #' @examples
 av_income_simple = function(lambda_ij_i,
@@ -144,7 +140,6 @@ av_income_simple = function(lambda_ij_i,
 #' @param mu Float - Floorspace prod function: output elast wrt capita, 1-mu wrt land.     
 #'
 #' @return
-#' @export
 #'
 #' @examples
 density_development = function(Q,
@@ -179,7 +174,6 @@ density_development = function(Q,
 #' @param delta Float - decay parameter agglomeration.
 #' @param lambda Float - agglomeration force.
 #' @return
-#' @export
 #'
 #' @examples
 productivity = function(N,
@@ -189,7 +183,8 @@ productivity = function(N,
                         K,
                         t_ij,
                         delta,
-                        lambda){
+                        lambda,
+                        beta){
   
   Q_mean = exp(mean(log(Q)));
   Q_norm = Q/Q_mean;
@@ -220,7 +215,6 @@ productivity = function(N,
 #' @param eta Float - congestion force
 #'
 #' @return Matrix with the amenity distribution of living in each location.
-#' @export
 #'
 #' @examples
 living_amenities_simple = function(theta,
@@ -228,6 +222,7 @@ living_amenities_simple = function(theta,
                                    L_i,
                                    W_i,
                                    Q,
+                                   K,
                                    alpha,
                                    t_ij,
                                    rho,
@@ -235,7 +230,7 @@ living_amenities_simple = function(theta,
   Q_mean = exp(mean(log(Q)));
   Q_norm = Q/Q_mean;
   L_i_mean = exp(mean(log(L_i)));
-  L_i_norm = L_i/L_mean;
+  L_i_norm = L_i/L_i_mean;
   W_i_mean = exp(mean(log(W_i)));
   W_i_norm = W_i/W_i_mean;
   B = array_operator(array_operator(L_i_norm^(1/theta), Q_norm^(1-alpha), '*'), W_i_norm^((-1)/theta), '*');
@@ -296,6 +291,7 @@ inversionModel = function(N,
                           lambda,
                           epsilon,
                           mu,
+                          eta,
                           nu_init=0.005,
                           nu_intervals = c(),
                           nu_mult = c(),
@@ -340,7 +336,7 @@ inversionModel = function(N,
   Inc = av_income_simple(lambda_ij_i=lambda_ij_i,
                          w_tr = w_tr
   )
-  ybar = Inc$y_bar
+  y_bar = Inc$y_bar
   
   
   #Density of development
@@ -348,7 +344,7 @@ inversionModel = function(N,
                               K=K,
                               w=w,
                               L_j=L_j,
-                              ybar=ybar,
+                              y_bar=y_bar,
                               L_i=L_i,
                               beta=beta,
                               alpha=alpha,
@@ -370,32 +366,35 @@ inversionModel = function(N,
                       K=K,
                       t_ij = t_ij,
                       delta=delta,
-                      lambda=lambda
+                      lambda=lambda,
+                      beta=beta
   )
   A = Prod$A
   a = Prod$a
-  
+
   # Amenities
   AM = living_amenities_simple(theta=theta,
                                N=N,
                                L_i=L_i,
                                W_i=W_i,
                                Q=Q,
+                               K=K,
                                alpha=alpha,
                                t_ij=t_ij,
                                rho=rho,
                                eta=eta
   )
-  
+
   B = AM$B
   b = AM$b  
   
   # Save and export
   Q_alpha = Q_norm^(1-alpha)
   u = array_operator(array_operator(W_i,Q_alpha,'/'),B,'*')
-  U = (sumDims(array_operator(u, array_operator(U_i, theta, '^'), '*'),1))^(1/theta)
-  
-  return(list(A=A, a=a, u=u, B=B, b=b, w=w, varphi=varphi, U=U, Q_norm=Q_norm))
+  #U = (sumDims(array_operator(u, array_operator(U_i, theta, '^'), '*'),1))^(1/theta)
+
+  # return(list(A=A, a=a, u=u, B=B, b=b, w=w, varphi=varphi, U=U, Q_norm=Q_norm))
+  return(list(A=A, a=a, u=u, B=B, b=b, w=w, varphi=varphi, Q_norm=Q_norm))
 }
 
 
@@ -430,7 +429,6 @@ inversionModel = function(N,
 #' @param zeta Float - convergence parameter
 #' 
 #' @return Counterfactual values.
-#' @export
 #'
 #' @examples
 solveModel = function(N,

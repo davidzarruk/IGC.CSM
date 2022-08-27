@@ -1,6 +1,6 @@
 
 library(roxygen2)
-setwd('Documents/IGCities/')
+setwd("/Users/zarruk/Documents/IGCities/")
 rm(list = ls())
 
 roxygenise()

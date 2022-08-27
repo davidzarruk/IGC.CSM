@@ -4,7 +4,7 @@
 \alias{productivity}
 \title{Computes productivity levels in each location}
 \usage{
-productivity(N, Q, w, L_j, K, t_ij, delta, lambda)
+productivity(N, Q, w, L_j, K, t_ij, delta, lambda, beta)
 }
 \arguments{
 \item{N}{Float - Number of locations.}

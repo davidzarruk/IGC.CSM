@@ -4,7 +4,7 @@
 \alias{living_amenities_simple}
 \title{Function to estimate amenity parameters of locations where users live.}
 \usage{
-living_amenities_simple(theta, N, L_i, W_i, Q, alpha, t_ij, rho, eta)
+living_amenities_simple(theta, N, L_i, W_i, Q, K, alpha, t_ij, rho, eta)
 }
 \arguments{
 \item{theta}{Float - Parameter that governs the reallocation of workers across

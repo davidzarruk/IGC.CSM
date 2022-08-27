@@ -24,6 +24,7 @@ inversionModel(
   lambda,
   epsilon,
   mu,
+  eta,
   nu_init = 0.005,
   nu_intervals = c(),
   nu_mult = c(),
@@ -64,11 +65,11 @@ consumption.}
 
 \item{mu}{Float - Floorspace prod function: output elast wrt capital, 1-mu wrt land.}
 
+\item{eta}{Float - Congestion force}
+
 \item{zeta_intervals}{TODO}
 
 \item{zeta_mult}{TODO}
-
-\item{eta}{Float - Congestion force}
 }
 \value{
 Equilibrium values.

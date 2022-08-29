@@ -438,6 +438,7 @@ solveModel = function(N,
                       a,
                       b,
                       maxiter,
+                      tol=10^-10,
                       alpha,
                       beta,
                       theta,
@@ -470,6 +471,7 @@ solveModel = function(N,
   zeta_init = zeta;
 
   while(outerdiff>tol & iter < maxiter){
+    print(iter)
     # 1) Labor supply equation
     w_tr = aperm(array(w, dim=c(N,1)), c(2,1));
     rep_w_tr = kronecker(w_tr^theta, array(1, dim=c(N, 1)));
@@ -513,7 +515,7 @@ solveModel = function(N,
     # 7 Total output by location
     FS_f = array_operator(ttheta,array_operator(varphi, K^(1-mu), '*'), '*')
     Y = array_operator(A, array_operator(L_j^beta, FS_f^beta, '*'), '*')
-    Q_upd1 = (1-beta)*array_operator(Y,FS_f)
+    Q_upd1 = (1-beta)*array_operator(Y,FS_f, '/')
     w_upd = beta*array_operator(Y, L_j, '/')
 
     # 8 Housing prices
@@ -532,7 +534,7 @@ solveModel = function(N,
     z_L = array_operator(L_i, L_i_upd, '-')
     z_Q = array_operator(Q, Q_upd, '-')
     z_theta = array_operator(ttheta, ttheta_upd, '-')
-    outerdiff = max(max(abs(z_w)), max(abs(z_L)), max(abs(z_Q)), max(abs(z_theta)))
+    outerdiff = max(c(max(abs(z_w)), max(abs(z_L)), max(abs(z_Q)), max(abs(z_theta))))
     iter = iter+1
     
     # 11 New vector of variables

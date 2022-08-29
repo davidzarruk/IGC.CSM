@@ -451,7 +451,7 @@ solveModel = function(N,
                       w_eq,
                       u_eq,
                       Q_eq,
-                      theta_eq
+                      ttheta_eq
                       ){
 
   # Formatting of input data
@@ -466,7 +466,7 @@ solveModel = function(N,
   w = w_eq;
   u = u_eq;
   Q = Q_eq;
-  ttheta = theta_eq
+  ttheta = ttheta_eq
   iter = 0;
   zeta_init = zeta;
 
@@ -483,6 +483,7 @@ solveModel = function(N,
     L_ij = array_operator(L_i, lambda_ij_i, '*')
     L_j = sumDims2(L_ij, 1)
     L = sum(L_i)
+    lambda_i = L_i/L
     
     # 2 average income
     av_income = av_income_simple(lambda_ij_i=lambda_ij_i,w_tr = w_tr)
@@ -496,20 +497,19 @@ solveModel = function(N,
     L_j_dens_per = aperm(array(L_j_dens, dim=c(N,1)), c(2,1));
     L_j_dens_rep = kronecker(L_j_dens_per, array(1, dim=c(N, 1)));
     Upsilon = sumDims2(array_operator(exp(-delta*t_ij), L_j_dens_rep, '*'), 2);    
-    A = array_operator(a, Upsilon, '*')
+    A = array_operator(a, Upsilon^lambda, '*')
     
     # 5 Amenities
     L_i_dens = (array_operator(L_i, K, '/'));
     L_i_dens_per = aperm(array(L_i_dens, dim=c(N,1)), c(2,1));
     L_i_dens_rep = kronecker(L_i_dens_per, array(1, dim=c(N, 1)));
     Omega = sumDims2(array_operator(exp(-rho*t_ij), L_i_dens_rep, '*'), 2);
-    B = array_operator(b, Omega,'*')
+    B = array_operator(b, Omega^(-eta),'*')
     
     # 6 Residents, probabilities, and welfare
     u =  array_operator(array_operator(W_i, Q^(1-alpha), '/'), B, '*')
     U = sum(u^theta)
-    lambda_i = (u^theta)/U
-    L_i_upd = L*lambda_i
+    lambda_i_upd = (u^theta)/U
     U = U^(1/theta)
     
     # 7 Total output by location
@@ -517,7 +517,7 @@ solveModel = function(N,
     Y = array_operator(A, array_operator(L_j^beta, FS_f^beta, '*'), '*')
     Q_upd1 = (1-beta)*array_operator(Y,FS_f, '/')
     w_upd = beta*array_operator(Y, L_j, '/')
-
+    
     # 8 Housing prices
     FS_r = array_operator((1-ttheta), array_operator(varphi, K^(1-mu), '*'), '*')
     X = array_operator(ybar, L_i, '*')
@@ -531,21 +531,23 @@ solveModel = function(N,
     
     # 10 Calculating the main differences
     z_w = array_operator(w, w_upd, '-')
-    z_L = array_operator(L_i, L_i_upd, '-')
+    z_L = array_operator(lambda_i, lambda_i_upd, '-')
     z_Q = array_operator(Q, Q_upd, '-')
     z_theta = array_operator(ttheta, ttheta_upd, '-')
     outerdiff = max(c(max(abs(z_w)), max(abs(z_L)), max(abs(z_Q)), max(abs(z_theta))))
+    #outerdiff = max(c(max(abs(z_w)), max(abs(z_Q)), max(abs(z_theta))))
+    print(outerdiff)
     iter = iter+1
     
     # 11 New vector of variables
-    L_i = zeta*L_i + (1-zeta)*L_i_upd
+    lambda_i = zeta*lambda_i + (1-zeta)*lambda_i_upd
     Q = zeta*Q + (1-zeta)*Q_upd
     w = zeta*w + (1-zeta)*w_upd
     ttheta = zeta*ttheta + (1-zeta)*ttheta_upd
-    
+    L_i = lambda_i*L
   }
   
   return(list(w=w, W_i=W_i, B=B, A=A, Q=Q, lambda_ij_i=lambda_ij_i, L_i=L_i, L_j=L_j,
-              ybar=ybar, ttheta=ttheta, u=u, U=U))
+              ybar=ybar, lambda_i=lambda_i, ttheta=ttheta, u=u, U=U))
 }
 

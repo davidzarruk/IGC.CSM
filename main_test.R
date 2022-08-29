@@ -9,12 +9,14 @@ library('devtools')
 install_github("davidzarruk/IGCities", force = TRUE)
 library(IGCities)
 
-#setwd("C:/Users/romandzarate/GitHub/IGCities")
-setwd('/Users/zarruk/Documents/IGCities/')
+setwd("C:/Users/romandzarate/GitHub/IGCities")
+#setwd('/Users/zarruk/Documents/IGCities/')
 
 #-----------------#
 #   Parameters    #
 #-----------------#
+
+rm(list = ls())
 
 # Data
 data_locations = read.csv("data/Data for model/Chars.csv")
@@ -78,7 +80,7 @@ H_bar_rest = 18
 #      (2) Solve Models      #
 #----------------------------#
 
-zeta = 0.1
+zeta = 0.3
 # Invert model
 inversion_m_bl  = inversionModel(N=N,
                                 L_i=L_i,
@@ -100,7 +102,7 @@ inversion_m_bl  = inversionModel(N=N,
                                 maxiter=200)
 
 
-zeta = 0.0001
+zeta = 0.95
 # Solve model
 results_m_bl  = solveModel(N=N,
                           L_i=L_i,

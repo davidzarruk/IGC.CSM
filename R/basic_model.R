@@ -393,7 +393,7 @@ inversionModel = function(N,
   u = array_operator(array_operator(W_i,Q_alpha,'/'),B,'*')
   U = (sumDims(u,1))^(1/theta)
 
-  return(list(A=A, a=a, u=u, B=B, b=b, w=w, varphi=varphi, U=U, Q_norm=Q_norm))
+  return(list(A=A, a=a, u=u, B=B, b=b, w=w, varphi=varphi, U=U, Q_norm=Q_norm, ttheta=ttheta))
 }
 
 
@@ -411,7 +411,6 @@ inversionModel = function(N,
 #' @param b Nx1 array - Vector of amenities in each location
 #' @param maxiter Integer - Maximum number of iterations for convergence.
 #'     Default maxiter=1000.
-#' @param endo_Lr 0: workers don't reallocate 1: workers reallocate
 #' @param alpha Float - Exp. share in consumption, 1-alpha exp. share in housing
 #' @param beta Float - Output elasticity with respect to labor
 #' @param theta Float - Commuting and migration elasticity.
@@ -439,7 +438,6 @@ solveModel = function(N,
                       a,
                       b,
                       maxiter,
-                      endo_Lr,
                       alpha,
                       beta,
                       theta,
@@ -467,7 +465,7 @@ solveModel = function(N,
   w = w_eq;
   u = u_eq;
   Q = Q_eq;
-  ttheta = ttheta_eq
+  ttheta = theta_eq
   iter = 0;
   zeta_init = zeta;
 
@@ -485,7 +483,7 @@ solveModel = function(N,
     L = sum(L_i)
     
     # 2 average income
-    av_income = av_income(lambda_ij_i=lambda_ij_i,w_tr = w_tr)
+    av_income = av_income_simple(lambda_ij_i=lambda_ij_i,w_tr = w_tr)
     ybar = av_income$y_bar
     
     # 3 Total floorspace

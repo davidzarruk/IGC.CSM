@@ -2,50 +2,44 @@
 
 This directory has all the functions to simulate the model from Ahlfedlt et al. (2015)
 
-===========================================================
-Outline of Code
-===========================================================
+##Outline of Code
 
-===========================================================
-1. Auxiliary functions: utils.R
-===========================================================
+##1. Auxiliary functions: utils.R
 
-# 1.1 array_operator.R
+## 1.1 array_operator.R
 **Goal**: an R function to compute matrix operations like Matlab such as .*, ./, -, and +
 **Description**: self-explanatory
 **Input**: two arrays
 **Output**: a new array
 
-# 1.2 sumDims.R
+## 1.2 sumDims.R
 **Goal**: an R function to sum across columns for 3x3 matrixes
 **Description**: self-explanatory: useful for a model with multiple sectors
 **Input**: a 3x3 Matrix
 **Output**: a new vector with the sum of rows, columns, or the third dimension
 
-# 1.3 sumDims.R
+## 1.3 sumDims.R
 **Goal**: an R function to sum across rows or columns and then take the transpose
 **Description**: self-explanatory: useful for the basic model
 **Input**: a 2x2 Matrix
 **Output**: a new vector with the sum of rows or columns
 
-===========================================================
-2. Main functions: basic_models.R
-===========================================================
+##2. Main functions: basic_models.R
 
-# 2.1 commuting_matrix.R
+## 2.1 commuting_matrix.R
 **Goal**: an R function to transform travel times into commuting costs
 **Description**: self-explanatory.
 **Input**: a matrix of travel times and the parameter epsilon (how easy is to substitute transportation modes)
 **Output**: a matrix of iceberg commuting costs.
 
-# 2.2 av_income.R
+## 2.2 av_income.R
 **Goal**: an R function to compute the average income in each location
 **Description**: self-explanatory.
 **Input**: The matrix lambda_ij|i
 		   The vector of wages w_j
 **Output**: The average income in each location.
 
-# 2.3 wages_inversion.R
+## 2.3 wages_inversion.R
 **Goal**: an R function to invert the model and recover the wage distribution that matches the model and data
 **Description**: self-explanatory.
 **Input**: L_j Number of workers in each location
@@ -59,7 +53,7 @@ Outline of Code
 			lambda_ij_i the commuting shares conditional on living in location i
 			W_i: a vector of commuter market access measure
 
-# 2.4 density_development.R
+## 2.4 density_development.R
 **Goal**: an R function to invert the model and recover the density development that matches the model and data
 **Description**: self-explanatory.
 **Input**: Q_i vector of housing prices
@@ -77,7 +71,7 @@ Outline of Code
 			FS_r: Residential floorspace
 			FS: total floorspace = varphi_i x K^{1-mu}
 
-# 2.5 productivity.R
+## 2.5 productivity.R
 **Goal**: an R function to invert the model and recover the productivity vector
 **Description**: self-explanatory.
 **Input**: N number of locations
@@ -91,7 +85,7 @@ Outline of Code
 **Output**: A_i Endogenous TFP measure (takes into account the externalities)
 			a_i baseline and exogenous productivity measure
 
-# 2.6 living_amenities.R
+## 2.6 living_amenities.R
 **Goal**: an R function to invert the model and recover the amenity vector
 **Description**: self-explanatory.
 **Input**: N number of locations
@@ -106,7 +100,7 @@ Outline of Code
 **Output**: B_i Endogenous amenity measure (takes into account the externalities)
 			b_i baseline and exogenous amenity measure
 
-# 2.7 inversionModel.R		
+## 2.7 inversionModel.R		
 **Goal**: an R function to invert the model and recover the economy fundamentals
 **Description**: self-explanatory.
 **Input**: N number of locations
@@ -135,7 +129,7 @@ Outline of Code
 			varphi density of development
 			Q_norm housing prices normalized
 
-# 2.7 solveModel.R		
+## 2.7 solveModel.R		
 **Goal**: an R function to solve the model and compute counterfactuals
 **Description**: self-explanatory.
 **Input**: N number of locations

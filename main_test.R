@@ -9,7 +9,7 @@ library('devtools')
 install_github("davidzarruk/IGCities", force = TRUE)
 library(IGCities)
 
-setwd("/Users/zarruk/Documents/IGCities/")
+setwd("C:/Users/romandzarate/GitHub/IGCities")
 
 #-----------------#
 #   Parameters    #

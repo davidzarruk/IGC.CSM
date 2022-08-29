@@ -391,10 +391,9 @@ inversionModel = function(N,
   # Save and export
   Q_alpha = Q_norm^(1-alpha)
   u = array_operator(array_operator(W_i,Q_alpha,'/'),B,'*')
-  #U = (sumDims(array_operator(u, array_operator(U_i, theta, '^'), '*'),1))^(1/theta)
+  U = (sumDims(u,1))^(1/theta)
 
-  # return(list(A=A, a=a, u=u, B=B, b=b, w=w, varphi=varphi, U=U, Q_norm=Q_norm))
-  return(list(A=A, a=a, u=u, B=B, b=b, w=w, varphi=varphi, Q_norm=Q_norm))
+  return(list(A=A, a=a, u=u, B=B, b=b, w=w, varphi=varphi, U=U, Q_norm=Q_norm))
 }
 
 
@@ -511,6 +510,7 @@ solveModel = function(N,
     U = sum(u^theta)
     lambda_i = (u^theta)/U
     L_i_upd = L*lambda_i
+    U = U^(1/theta)
     
     # 7 Total output by location
     FS_f = array_operator(ttheta,array_operator(varphi, K^(1-mu), '*'), '*')

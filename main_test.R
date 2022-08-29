@@ -97,7 +97,7 @@ inversion_m_bl  = inversionModel(N=N,
                                 epsilon=epsilon,
                                 mu=mu0,
                                 eta=eta0,
-                                maxiter=10)
+                                maxiter=200)
 
 
 zeta = 0.0001

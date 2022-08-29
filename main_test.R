@@ -9,7 +9,8 @@ library('devtools')
 install_github("davidzarruk/IGCities", force = TRUE)
 library(IGCities)
 
-setwd("C:/Users/romandzarate/GitHub/IGCities")
+#setwd("C:/Users/romandzarate/GitHub/IGCities")
+setwd('/Users/zarruk/Documents/IGCities/')
 
 #-----------------#
 #   Parameters    #
@@ -96,32 +97,30 @@ inversion_m_bl  = inversionModel(N=N,
                                 epsilon=epsilon,
                                 mu=mu0,
                                 eta=eta0,
-                                maxiter=10);
+                                maxiter=10)
 
 
 zeta = 0.0001
 # Solve model
-results_m_bl  = solveModel1_Eff(N=N,
-                                S=S,
-                                L_bar=L_bar,
-                                H_bar=H_bar,
-                                H_bar_rest=H_bar_rest,
-                                tau=tau,
-                                A=inversion_m_bl$A,
-                                u_eq=inversion_m_bl$u,
-                                B=inversion_m_bl$B,
-                                w_eq=inversion_m_bl$w,
-                                lambda_i=lambda_i,
-                                lambda_is_i=lambda_is_i,
-                                zeta=zeta,
-                                tol=tol,
-                                maxiter=maxiter,
-                                endo_Lr=endo_Lr,
-                                alpha1=alpha1,
-                                beta0=beta0,
-                                theta1=theta1,
-                                eta1=eta1,
-                                kappa1=kappa1,
-                                xi1=xi1,
-                                sigma0=sigma0,
-                                F=F)
+results_m_bl  = solveModel(N=N,
+                          L_i=L_i,
+                          L_j=L_j,
+                          varphi=inversion_m_bl$varphi,
+                          t_ij=t_ij,
+                          K=K,
+                          a=inversion_m_bl$a,
+                          b=inversion_m_bl$b,
+                          maxiter=10,
+                          alpha=alpha1,
+                          beta=beta0,
+                          theta=theta1,
+                          mu=mu0,
+                          delta=delta0,
+                          lambda=lambda,
+                          rho=rho0,
+                          eta=eta0,
+                          epsilon=epsilon,
+                          w_eq=inversion_m_bl$w,
+                          u_eq=inversion_m_bl$u,
+                          Q_eq=inversion_m_bl$Q_norm,
+                          theta_eq=inversion_m_bl$ttheta)

@@ -16,6 +16,8 @@ setwd('/Users/zarruk/Documents/IGCities/')
 #   Parameters    #
 #-----------------#
 
+rm(list = ls())
+
 # Data
 data_locations = read.csv("data/Data for model/Chars.csv")
 data_times = read.csv("data/Data for model/MatrixTravelTimes_mins.csv")
@@ -78,7 +80,7 @@ H_bar_rest = 18
 #      (2) Solve Models      #
 #----------------------------#
 
-zeta = 0.1
+zeta = 0.3
 # Invert model
 inversion_m_bl  = inversionModel(N=N,
                                 L_i=L_i,
@@ -97,12 +99,12 @@ inversion_m_bl  = inversionModel(N=N,
                                 epsilon=epsilon,
                                 mu=mu0,
                                 eta=eta0,
-                                maxiter=200)
+                                maxiter=50)
 
 increase_prod = L_j$`data_locations$t_w_vodacom` > 7.837954e+03
 a_increase = increase_prod*inversion_m_bl$a*1.1 + (1-increase_prod)*inversion_m_bl$a
 
-zeta = 0.9
+zeta = 0.95
 # Solve model
 results_m_bl  = solveModel(N=N,
                           L_i=L_i,
@@ -112,7 +114,7 @@ results_m_bl  = solveModel(N=N,
                           K=K,
                           a=a_increase,
                           b=inversion_m_bl$b,
-                          maxiter=100,
+                          maxiter=50,
                           alpha=alpha1,
                           beta=beta0,
                           theta=theta1,

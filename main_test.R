@@ -115,6 +115,7 @@ results_m_bl  = solveModel(N=N,
                           a=a_increase,
                           b=inversion_m_bl$b,
                           maxiter=50,
+                          tol=10^-10,
                           alpha=alpha1,
                           beta=beta0,
                           theta=theta1,
@@ -127,4 +128,4 @@ results_m_bl  = solveModel(N=N,
                           w_eq=inversion_m_bl$w,
                           u_eq=inversion_m_bl$u,
                           Q_eq=inversion_m_bl$Q_norm,
-                          theta_eq=inversion_m_bl$ttheta)
+                          ttheta_eq=inversion_m_bl$ttheta)

@@ -99,8 +99,10 @@ inversion_m_bl  = inversionModel(N=N,
                                 eta=eta0,
                                 maxiter=200)
 
+increase_prod = L_j$`data_locations$t_w_vodacom` > 7.837954e+03
+a_increase = increase_prod*inversion_m_bl$a*1.1 + (1-increase_prod)*inversion_m_bl$a
 
-zeta = 0.0001
+zeta = 0.9
 # Solve model
 results_m_bl  = solveModel(N=N,
                           L_i=L_i,
@@ -108,9 +110,9 @@ results_m_bl  = solveModel(N=N,
                           varphi=inversion_m_bl$varphi,
                           t_ij=t_ij,
                           K=K,
-                          a=inversion_m_bl$a,
+                          a=a_increase,
                           b=inversion_m_bl$b,
-                          maxiter=10,
+                          maxiter=100,
                           alpha=alpha1,
                           beta=beta0,
                           theta=theta1,

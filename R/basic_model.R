@@ -471,7 +471,7 @@ solveModel = function(N,
   zeta_init = zeta;
 
   while(outerdiff>tol & iter < maxiter){
-    print(iter)
+    print(paste(iter, outerdiff))
     # 1) Labor supply equation
     w_tr = aperm(array(w, dim=c(N,1)), c(2,1));
     rep_w_tr = kronecker(w_tr^theta, array(1, dim=c(N, 1)));

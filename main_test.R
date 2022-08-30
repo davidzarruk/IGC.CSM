@@ -9,8 +9,8 @@ library('devtools')
 install_github("davidzarruk/IGCities", force = TRUE)
 library(IGCities)
 
-setwd("C:/Users/romandzarate/GitHub/IGCities")
-#setwd('/Users/zarruk/Documents/IGCities/')
+#setwd("C:/Users/romandzarate/GitHub/IGCities")
+setwd('/Users/zarruk/Documents/IGCities/')
 
 #-----------------#
 #   Parameters    #
@@ -99,8 +99,10 @@ inversion_m_bl  = inversionModel(N=N,
                                 epsilon=epsilon,
                                 mu=mu0,
                                 eta=eta0,
-                                maxiter=200)
+                                maxiter=50)
 
+increase_prod = L_j$`data_locations$t_w_vodacom` > 7.837954e+03
+a_increase = increase_prod*inversion_m_bl$a*1.1 + (1-increase_prod)*inversion_m_bl$a
 
 zeta = 0.95
 # Solve model
@@ -110,9 +112,9 @@ results_m_bl  = solveModel(N=N,
                           varphi=inversion_m_bl$varphi,
                           t_ij=t_ij,
                           K=K,
-                          a=inversion_m_bl$a,
+                          a=a_increase,
                           b=inversion_m_bl$b,
-                          maxiter=10,
+                          maxiter=50,
                           alpha=alpha1,
                           beta=beta0,
                           theta=theta1,

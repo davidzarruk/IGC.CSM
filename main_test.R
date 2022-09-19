@@ -48,7 +48,6 @@ nu_init = 0.005
 
 # Number of firms
 beta0 = 0.7
-F = 1
 sigma0 = 6
 
 # Basic Settings
@@ -99,8 +98,7 @@ inversion_m_bl  = inversionModel(N=N,
                                 epsilon=epsilon,
                                 mu=mu0,
                                 eta=eta0,
-                                maxiter=200)
-
+                                maxiter=10000)
 
 zeta = 0.95
 # Solve model
@@ -112,7 +110,7 @@ results_m_bl  = solveModel(N=N,
                           K=K,
                           a=inversion_m_bl$a,
                           b=inversion_m_bl$b,
-                          maxiter=10,
+                          maxiter=500,
                           alpha=alpha1,
                           beta=beta0,
                           theta=theta1,
@@ -125,4 +123,33 @@ results_m_bl  = solveModel(N=N,
                           w_eq=inversion_m_bl$w,
                           u_eq=inversion_m_bl$u,
                           Q_eq=inversion_m_bl$Q_norm,
-                          theta_eq=inversion_m_bl$ttheta)
+                          ttheta_eq=inversion_m_bl$ttheta)
+
+# Shock
+a = inversion_m_bl$a
+p90=quantile(a, 0.9)
+a_new = a*(1+0.1*(a>p90))
+
+# Solve model after shock
+results_m_bl  = solveModel(N=N,
+                           L_i=L_i,
+                           L_j=L_j,
+                           varphi=inversion_m_bl$varphi,
+                           t_ij=t_ij,
+                           K=K,
+                           a=a_new,
+                           b=inversion_m_bl$b,
+                           maxiter=500,
+                           alpha=alpha1,
+                           beta=beta0,
+                           theta=theta1,
+                           mu=mu0,
+                           delta=delta0,
+                           lambda=lambda,
+                           rho=rho0,
+                           eta=eta0,
+                           epsilon=epsilon,
+                           w_eq=inversion_m_bl$w,
+                           u_eq=inversion_m_bl$u,
+                           Q_eq=inversion_m_bl$Q_norm,
+                           ttheta_eq=inversion_m_bl$ttheta)

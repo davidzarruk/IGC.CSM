@@ -371,7 +371,7 @@ inversionModel = function(N,
   )
   A = Prod$A
   a = Prod$a
-
+  
   # Amenities
   AM = living_amenities_simple(theta=theta,
                                N=N,
@@ -384,7 +384,7 @@ inversionModel = function(N,
                                rho=rho,
                                eta=eta
   )
-
+  
   B = AM$B
   b = AM$b  
   
@@ -392,7 +392,7 @@ inversionModel = function(N,
   Q_alpha = Q_norm^(1-alpha)
   u = array_operator(array_operator(W_i,Q_alpha,'/'),B,'*')
   U = (sumDims(u,1))^(1/theta)
-
+  
   return(list(A=A, a=a, u=u, B=B, b=b, w=w, varphi=varphi, U=U, Q_norm=Q_norm, ttheta=ttheta))
 }
 
@@ -427,7 +427,6 @@ inversionModel = function(N,
 #' @param zeta Float - convergence parameter
 #' 
 #' @return Counterfactual values.
-#' @export
 #'
 #' @examples
 solveModel = function(N,
@@ -453,15 +452,15 @@ solveModel = function(N,
                       u_eq,
                       Q_eq,
                       ttheta_eq
-                      ){
-
+){
+  
   # Formatting of input data
   D = commuting_matrix(t_ij=t_ij, epsilon = epsilon)
   tau = D$tau
   L_i = array(unlist(L_i),dim(L_i))
   L_j = array(unlist(L_j),dim(L_j))
   K = array(unlist(K), dim(K))
-
+  
   # Settings
   outerdiff = Inf;
   w = w_eq;
@@ -470,8 +469,9 @@ solveModel = function(N,
   ttheta = ttheta_eq
   iter = 0;
   zeta_init = zeta;
-
+  
   while(outerdiff>tol & iter < maxiter){
+    print(iter)
     # 1) Labor supply equation
     w_tr = aperm(array(w, dim=c(N,1)), c(2,1));
     rep_w_tr = kronecker(w_tr^theta, array(1, dim=c(N, 1)));

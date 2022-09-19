@@ -14,7 +14,7 @@ solveModel(
   a,
   b,
   maxiter,
-  endo_Lr,
+  tol = 10^-10,
   alpha,
   beta,
   theta,
@@ -27,7 +27,7 @@ solveModel(
   w_eq,
   u_eq,
   Q_eq,
-  theta_eq
+  ttheta_eq
 )
 }
 \arguments{
@@ -49,8 +49,6 @@ solveModel(
 
 \item{maxiter}{Integer - Maximum number of iterations for convergence.
 Default maxiter=1000.}
-
-\item{endo_Lr}{0: workers don't reallocate 1: workers reallocate}
 
 \item{alpha}{Float - Exp. share in consumption, 1-alpha exp. share in housing}
 

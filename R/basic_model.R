@@ -427,6 +427,7 @@ inversionModel = function(N,
 #' @param zeta Float - convergence parameter
 #' 
 #' @return Counterfactual values.
+#' @export
 #'
 #' @examples
 solveModel = function(N,

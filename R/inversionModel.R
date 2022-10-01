@@ -33,24 +33,18 @@ inversionModel = function(N,
                           Q,
                           K,
                           t_ij,
-                          zeta,
-                          z_init,
-                          tol=10^-10,
-                          maxiter=1000,
-                          alpha,
-                          beta,
-                          theta,
-                          delta,
-                          rho,
-                          lambda,
-                          epsilon,
-                          mu,
-                          eta,
+                          alpha=0.7,
+                          beta=0.7,
+                          theta=7,
+                          delta=0.3585,
+                          rho=0.9094,
+                          lambda=0.01,
+                          epsilon=0.01,
+                          mu=0.3,
+                          eta=0.1548,
                           nu_init=0.005,
-                          nu_intervals = c(),
-                          nu_mult = c(),
-                          zeta_intervals = c(),
-                          zeta_mult = c()){
+                          tol=10^-10,
+                          maxiter=100){
   
   # Formatting of input data
   L_i = array(unlist(L_i), dim(L_i))
@@ -76,9 +70,7 @@ inversionModel = function(N,
                        L_j=L_j,
                        nu_init=nu_init,
                        tol=tol,
-                       maxiter=maxiter,
-                       nu_intervals = nu_intervals,
-                       nu_mult = nu_mult)
+                       maxiter=maxiter)
   
   # Equilibrium wages
   w = WI$w

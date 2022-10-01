@@ -37,23 +37,22 @@ solveModel = function(N,
                       K,
                       a,
                       b,
-                      maxiter,
-                      tol=10^-10,
-                      alpha,
-                      beta,
-                      theta,
-                      mu,
-                      delta,
-                      lambda,
-                      rho,
-                      eta,
-                      epsilon,
                       w_eq,
                       u_eq,
                       Q_eq,
-                      ttheta_eq
-){
-  
+                      ttheta_eq,
+                      alpha=0.7,
+                      beta=0.7,
+                      theta=7,
+                      mu=0.3,
+                      delta=0.3585,
+                      lambda=0.01,
+                      rho=0.9094,
+                      eta=0.1548,
+                      epsilon=0.01,
+                      maxiter=100,
+                      tol=10^-10){
+
   # Formatting of input data
   D = commuting_matrix(t_ij=t_ij, epsilon = epsilon)
   tau = D$tau

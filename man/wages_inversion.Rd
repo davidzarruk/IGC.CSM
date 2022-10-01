@@ -15,9 +15,7 @@ wages_inversion(
   L_j,
   nu_init = 0.05,
   tol = 10^-10,
-  maxiter = 10000,
-  nu_mult = c(),
-  nu_intervals = c()
+  maxiter = 10000
 )
 }
 \arguments{

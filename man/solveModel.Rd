@@ -88,7 +88,6 @@ Counterfactual values.
 Function to solve counterfactuals.
 }
 \examples{
-
 N=5
 L_i = c(104, 437, 356, 305, 187)
 L_j = c(86, 278, 189, 180, 99)

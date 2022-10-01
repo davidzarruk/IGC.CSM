@@ -103,11 +103,7 @@ solveModel = function(N,
   } else if(is.null(dim(K))){
     K = array(K, dim=c(N,1))
   }
-  if(is.data.frame(Q)){
-    Q = array(unlist(Q), dim(Q))
-  } else if(is.null(dim(Q))){
-    Q = array(Q, dim=c(N,1))
-  }
+
   t_ij = array(unlist(t_ij), dim(t_ij))  
 
   if(is.null(dim(a))){

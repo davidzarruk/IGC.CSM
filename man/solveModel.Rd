@@ -87,3 +87,37 @@ Counterfactual values.
 \description{
 Function to solve counterfactuals.
 }
+\examples{
+
+N=5
+L_i = c(104, 437, 356, 305, 187)
+L_j = c(86, 278, 189, 180, 99)
+Q = c(2123, 1576, 1371, 1931, 1637)
+K = c(0.44, 1.45, 1.15, 0.87, 0.58)
+t_ij = rbind(c(0.0, 6.6, 5.5, 5.6, 6.4),
+             c(6.7, 0.0, 3.9, 4.6, 4.4),
+             c(5.5, 3.9, 0.0, 2.8, 3.0),
+             c(5.6, 4.6, 2.8, 0.0, 2.7),
+             c(6.4, 4.4, 3.0, 2.7, 0.0))
+
+a = c(1.7, 1.7, 1.6, 1.8, 1.6)
+b = c(2.2, 2.5, 2.4, 2.6, 2.3)
+varphi = c(95, 219, 215, 167, 148)
+w_eq = c(0.9, 1.0, 1.0, 1.0, 0.9)
+u_eq = c(1.0, 1.3, 1.2, 1.2, 1.1)
+Q_eq = c(1.2, 0.9, 0.8, 1.1, 0.9)
+ttheta_eq = c(0.5, 0.4, 0.4, 0.4, 0.4)
+solveModel(N=N,
+           L_i=L_i,
+           L_j=L_j,
+           K=K,
+           t_ij=t_ij,
+           a=a,
+           b=b,
+           varphi=varphi,
+           w_eq=w_eq,
+           u_eq=u_eq,
+           Q_eq=Q_eq,
+           ttheta_eq=ttheta_eq)
+           
+}

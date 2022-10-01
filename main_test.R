@@ -22,12 +22,12 @@ rm(list = ls())
 data_locations = read.csv("data/Data for model/Chars.csv")
 data_times = read.csv("data/Data for model/MatrixTravelTimes_mins.csv")
 
-L_j = as.data.frame(data_locations$t_w_vodacom) # cantidad de trabajadores en cada location j
-L_i = as.data.frame(data_locations$t_r_vodacom) # cantidad de habitantes en cada location j
+L_j = data_locations$t_w_vodacom # cantidad de trabajadores en cada location j
+L_i = data_locations$t_r_vodacom # cantidad de habitantes en cada location j
 L_i = L_i*sum(L_j)/sum(L_i)
-K = as.data.frame(data_locations$SAL_area) # tamaño del lugar
-Q = as.data.frame(data_locations$price_m2)
-N = dim(L_i)[1]
+K = data_locations$SAL_area # tamaño del lugar
+Q = data_locations$price_m2
+N = length(L_i)
 t_ij = as.matrix(data_times[,2:(N+1)], dim=c(N,N))
 t_ij[864,] = t_ij[863,]
 t_ij[,864] = t_ij[,863]
@@ -43,14 +43,14 @@ t_ij[138,] = t_ij[137,]
 #----------------------------#
 
 # Invert model
-inversion_m_bl  = inversionModel(N=N,
+inversion_m_bl = inversionModel(N=N,
                                 L_i=L_i,
                                 L_j=L_j,
                                 Q=Q,
                                 K=K,
                                 t_ij=t_ij)
 
-increase_prod = L_j$`data_locations$t_w_vodacom` > 7.837954e+03
+increase_prod = L_j > 7.837954e+03
 a_increase = increase_prod*inversion_m_bl$a*1.1 + (1-increase_prod)*inversion_m_bl$a
 
 # Solve model

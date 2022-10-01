@@ -27,6 +27,24 @@
 #' @export
 #'
 #' @examples
+#' N=5
+#' L_i = c(104, 437, 356, 305, 187)
+#' L_j = c(86, 278, 189, 180, 99)
+#' Q = c(2123, 1576, 1371, 1931, 1637)
+#' K = c(0.44, 1.45, 1.15, 0.87, 0.58)
+#' t_ij = rbind(c(0.0, 6.6, 5.5, 5.6, 6.4),
+#'              c(6.7, 0.0, 3.9, 4.6, 4.4),
+#'              c(5.5, 3.9, 0.0, 2.8, 3.0),
+#'              c(5.6, 4.6, 2.8, 0.0, 2.7),
+#'              c(6.4, 4.4, 3.0, 2.7, 0.0))
+#' 
+#' inversionModel(N=N,
+#'                L_i=L_i,
+#'                L_j=L_j,
+#'                Q=Q,
+#'                K=K,
+#'                t_ij=t_ij)
+#'                
 inversionModel = function(N,
                           L_i,
                           L_j,
@@ -47,10 +65,27 @@ inversionModel = function(N,
                           maxiter=100){
   
   # Formatting of input data
-  L_i = array(unlist(L_i), dim(L_i))
-  L_j = array(unlist(L_j), dim(L_j))
-  K = array(unlist(K), dim(K))  
-  Q = array(unlist(Q), dim(Q))
+  if(is.data.frame(L_i)){
+    L_i = array(unlist(L_i), dim(L_i))
+  } else if(is.null(dim(L_i))){
+    L_i = array(L_i, dim=c(N,1))
+  }
+  
+  if(is.data.frame(L_j)){
+    L_j = array(unlist(L_j), dim(L_j))
+  } else if(is.null(dim(L_j))){
+    L_j = array(L_j, dim=c(N,1))
+  }
+  if(is.data.frame(K)){
+    K = array(unlist(K), dim(K))  
+  } else if(is.null(dim(K))){
+    K = array(K, dim=c(N,1))
+  }
+  if(is.data.frame(Q)){
+    Q = array(unlist(Q), dim(Q))
+  } else if(is.null(dim(Q))){
+    Q = array(Q, dim=c(N,1))
+  }
   t_ij = array(unlist(t_ij), dim(t_ij))  
   
   # Initialization

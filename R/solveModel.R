@@ -3,13 +3,15 @@
 #' @param N Integer - Number of locations.
 #' @param L_i Nx1 array - Number of residents in each location
 #' @param L_j Nx1 array - Number of workers in each location
-#' @param t_ij NxN matrix - Travel times across locations
-#' @param varphi Nx1 array - Density of development
 #' @param K Nx1 array - Land supply
+#' @param t_ij NxN matrix - Travel times across locations
 #' @param a Nx1 array - Total Factor Productivity in each location
 #' @param b Nx1 array - Vector of amenities in each location
-#' @param maxiter Integer - Maximum number of iterations for convergence.
-#'     Default maxiter=1000.
+#' @param varphi Nx1 array - Density of development
+#' @param w_eq Nx1 array - Initial vector of wages
+#' @param u_eq Nx1 array - Initial vector of welfare
+#' @param Q_eq Nx1 array - Initial price for floorspace
+#' @param ttheta_eq Nx1 array - Share of floorspace used commercially 
 #' @param alpha Float - Exp. share in consumption, 1-alpha exp. share in housing
 #' @param beta Float - Output elasticity with respect to labor
 #' @param theta Float - Commuting and migration elasticity.
@@ -19,11 +21,10 @@
 #' @param rho Float - decay parameter for amenities
 #' @param eta Float - amenity externality
 #' @param epsilon Float - Parameter that transforms travel times to commuting costs
-#' @param w_eq Nx1 array - Initial vector of wages
-#' @param u_eq Nx1 array - Initial vector of welfare
-#' @param Q_eq Nx1 array - Initial price for floorspace
-#' @param ttheta_eq Nx1 array - Share of floorspace used commercially 
 #' @param zeta Float - convergence parameter
+#' @param tol Int - tolerance factor
+#' @param maxiter Integer - Maximum number of iterations for convergence.
+#'     Default maxiter=1000.
 #' 
 #' @return Counterfactual values.
 #' @export
@@ -32,11 +33,11 @@
 solveModel = function(N,
                       L_i,
                       L_j,
-                      varphi,
-                      t_ij,
                       K,
+                      t_ij,
                       a,
                       b,
+                      varphi,
                       w_eq,
                       u_eq,
                       Q_eq,
@@ -50,8 +51,9 @@ solveModel = function(N,
                       rho=0.9094,
                       eta=0.1548,
                       epsilon=0.01,
-                      maxiter=100,
-                      tol=10^-10){
+                      zeta=0.95,
+                      tol=10^-10,
+                      maxiter=100){
 
   # Formatting of input data
   D = commuting_matrix(t_ij=t_ij, epsilon = epsilon)
@@ -69,8 +71,8 @@ solveModel = function(N,
   iter = 0;
   zeta_init = zeta;
   
+  cat("Solving model...\n")
   while(outerdiff>tol & iter < maxiter){
-    print(iter)
     # 1) Labor supply equation
     w_tr = aperm(array(w, dim=c(N,1)), c(2,1));
     rep_w_tr = kronecker(w_tr^theta, array(1, dim=c(N, 1)));
@@ -135,7 +137,6 @@ solveModel = function(N,
     z_theta = array_operator(ttheta, ttheta_upd, '-')
     outerdiff = max(c(max(abs(z_w)), max(abs(z_L)), max(abs(z_Q)), max(abs(z_theta))))
     #outerdiff = max(c(max(abs(z_w)), max(abs(z_Q)), max(abs(z_theta))))
-    print(outerdiff)
     iter = iter+1
     
     # 11 New vector of variables
@@ -144,6 +145,9 @@ solveModel = function(N,
     w = zeta*w + (1-zeta)*w_upd
     ttheta = zeta*ttheta + (1-zeta)*ttheta_upd
     L_i = lambda_i*L
+    if(iter %% 10 == 0){
+      cat(paste0("Iteration: ", iter, ", error: ", round(outerdiff, 3), ".\n"))
+    }
   }
   
   return(list(w=w, W_i=W_i, B=B, A=A, Q=Q, lambda_ij_i=lambda_ij_i, L_i=L_i, L_j=L_j,

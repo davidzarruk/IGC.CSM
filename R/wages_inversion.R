@@ -35,6 +35,7 @@ wages_inversion = function(N,
   iter = 0
   nu = nu_init
   
+  cat("Inverting wages...\n")
   while(outerdiff>tol & iter<maxiter){
     # 1) Labor supply
     # Indirect utility
@@ -67,7 +68,9 @@ wages_inversion = function(N,
     } else if(iter>1000000){
       break
     }
-    print(paste(outerdiff, iter))
+    if(iter %% 10 == 0){
+      cat(paste0("Iteration: ", iter, ", error: ", round(outerdiff, 3), ".\n"))
+    }
   }
   
   return(list(w=w, w_tr=w_tr, W_i=W_i, lambda_ij_i=lambda_ij_i))

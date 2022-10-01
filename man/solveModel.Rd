@@ -8,11 +8,11 @@ solveModel(
   N,
   L_i,
   L_j,
-  varphi,
-  t_ij,
   K,
+  t_ij,
   a,
   b,
+  varphi,
   w_eq,
   u_eq,
   Q_eq,
@@ -26,8 +26,9 @@ solveModel(
   rho = 0.9094,
   eta = 0.1548,
   epsilon = 0.01,
-  maxiter = 100,
-  tol = 10^-10
+  zeta = 0.95,
+  tol = 10^-10,
+  maxiter = 100
 )
 }
 \arguments{
@@ -37,15 +38,15 @@ solveModel(
 
 \item{L_j}{Nx1 array - Number of workers in each location}
 
-\item{varphi}{Nx1 array - Density of development}
+\item{K}{Nx1 array - Land supply}
 
 \item{t_ij}{NxN matrix - Travel times across locations}
-
-\item{K}{Nx1 array - Land supply}
 
 \item{a}{Nx1 array - Total Factor Productivity in each location}
 
 \item{b}{Nx1 array - Vector of amenities in each location}
+
+\item{varphi}{Nx1 array - Density of development}
 
 \item{w_eq}{Nx1 array - Initial vector of wages}
 
@@ -73,10 +74,12 @@ solveModel(
 
 \item{epsilon}{Float - Parameter that transforms travel times to commuting costs}
 
+\item{zeta}{Float - convergence parameter}
+
+\item{tol}{Int - tolerance factor}
+
 \item{maxiter}{Integer - Maximum number of iterations for convergence.
 Default maxiter=1000.}
-
-\item{zeta}{Float - convergence parameter}
 }
 \value{
 Counterfactual values.

@@ -52,18 +52,19 @@ consumption.}
 
 \item{lambda}{Float - Agglomeration force}
 
+\item{epsilon}{Float - Parameter that transforms travel times to commuting costs}
+
 \item{mu}{Float - Floorspace prod function: output elast wrt capital, 1-mu wrt land.}
 
 \item{eta}{Float - Congestion force}
+
+\item{nu_init}{Float - Convergence parameter to update wages.
+Default nu=0.01.}
 
 \item{tol}{Int - tolerance factor}
 
 \item{maxiter}{Integer - Maximum number of iterations for convergence.
 Default maxiter=1000.}
-
-\item{zeta_intervals}{TODO}
-
-\item{zeta_mult}{TODO}
 }
 \value{
 Equilibrium values.

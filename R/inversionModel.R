@@ -2,26 +2,26 @@
 #'  are chosen to match model to data.
 #'
 #' @param N Integer - Number of locations.
-#' @param t_ij NxN matrix - Travel times across all possible locations.
 #' @param L_i Nx1 matrix - Number of residents in each location.
 #' @param L_j Nx1 matrix - Number of workers in each location. 
 #' @param Q Nx1 matrix - Floorspace prices
 #' @param K Nx1 matrix - Land area
-#' @param tol Int - tolerance factor
-#' @param maxiter Integer - Maximum number of iterations for convergence.
-#'     Default maxiter=1000.
+#' @param t_ij NxN matrix - Travel times across all possible locations.
 #' @param alpha Float - Utility parameter that determines preferences for
 #'     consumption.
 #' @param beta Float - Output elasticity wrt labor
 #' @param theta Float - Commuting elasticity and migration elasticity.
-#' @param lambda Float - Agglomeration force
 #' @param delta Float - Decay parameter agglomeration
-#' @param eta Float - Congestion force
 #' @param rho Float - Decay parameter congestion
+#' @param lambda Float - Agglomeration force
+#' @param epsilon Float - Parameter that transforms travel times to commuting costs
 #' @param mu Float - Floorspace prod function: output elast wrt capital, 1-mu wrt land.     
-#' 
-#' @param zeta_intervals TODO
-#' @param zeta_mult TODO
+#' @param eta Float - Congestion force
+#' @param nu_init Float - Convergence parameter to update wages.
+#'     Default nu=0.01.
+#' @param tol Int - tolerance factor
+#' @param maxiter Integer - Maximum number of iterations for convergence.
+#'     Default maxiter=1000.
 #'
 #' @return Equilibrium values.
 #' @export

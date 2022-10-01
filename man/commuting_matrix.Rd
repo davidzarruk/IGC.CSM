@@ -9,7 +9,7 @@ commuting_matrix(t_ij, epsilon)
 \arguments{
 \item{t_ij}{NxN matrix - Travel time matrix across locations}
 
-\item{delta}{Float - Parameter that transforms travel times to commuting costs}
+\item{epsilon}{Float - Parameter that transforms travel times to commuting costs}
 }
 \value{
 A NxN matrix of commuting costs

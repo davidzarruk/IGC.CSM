@@ -12,11 +12,11 @@ library(IGCities)
 #setwd("C:/Users/romandzarate/GitHub/IGCities")
 setwd('/Users/zarruk/Documents/IGCities/')
 
+rm(list = ls())
+
 #-----------------#
 #   Parameters    #
 #-----------------#
-
-rm(list = ls())
 
 # Data
 data_locations = read.csv("data/Data for model/Chars.csv")
@@ -42,7 +42,6 @@ t_ij[138,] = t_ij[137,]
 #      (2) Solve Models      #
 #----------------------------#
 
-zeta = 0.3
 # Invert model
 inversion_m_bl  = inversionModel(N=N,
                                 L_i=L_i,
@@ -54,16 +53,15 @@ inversion_m_bl  = inversionModel(N=N,
 increase_prod = L_j$`data_locations$t_w_vodacom` > 7.837954e+03
 a_increase = increase_prod*inversion_m_bl$a*1.1 + (1-increase_prod)*inversion_m_bl$a
 
-zeta = 0.95
 # Solve model
 results_m_bl  = solveModel(N=N,
                           L_i=L_i,
                           L_j=L_j,
-                          varphi=inversion_m_bl$varphi,
-                          t_ij=t_ij,
                           K=K,
+                          t_ij=t_ij,
                           a=a_increase,
                           b=inversion_m_bl$b,
+                          varphi=inversion_m_bl$varphi,
                           w_eq=inversion_m_bl$w,
                           u_eq=inversion_m_bl$u,
                           Q_eq=inversion_m_bl$Q_norm,
@@ -78,11 +76,11 @@ a_new = a*(1+0.1*(a>p90))
 results_m_bl  = solveModel(N=N,
                            L_i=L_i,
                            L_j=L_j,
-                           varphi=inversion_m_bl$varphi,
-                           t_ij=t_ij,
                            K=K,
+                           t_ij=t_ij,
                            a=a_new,
                            b=inversion_m_bl$b,
+                           varphi=inversion_m_bl$varphi,
                            w_eq=inversion_m_bl$w,
                            u_eq=inversion_m_bl$u,
                            Q_eq=inversion_m_bl$Q_norm,

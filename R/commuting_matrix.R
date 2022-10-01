@@ -1,6 +1,6 @@
 #' Function to transform travel times into iceberg commuting costs
 #' @param t_ij NxN matrix - Travel time matrix across locations
-#' @param delta Float - Parameter that transforms travel times to commuting costs
+#' @param epsilon Float - Parameter that transforms travel times to commuting costs
 #' 
 #' @return A NxN matrix of commuting costs
 #' 

@@ -12,24 +12,18 @@ inversionModel(
   Q,
   K,
   t_ij,
-  zeta,
-  z_init,
-  tol = 10^-10,
-  maxiter = 1000,
-  alpha,
-  beta,
-  theta,
-  delta,
-  rho,
-  lambda,
-  epsilon,
-  mu,
-  eta,
+  alpha = 0.7,
+  beta = 0.7,
+  theta = 7,
+  delta = 0.3585,
+  rho = 0.9094,
+  lambda = 0.01,
+  epsilon = 0.01,
+  mu = 0.3,
+  eta = 0.1548,
   nu_init = 0.005,
-  nu_intervals = c(),
-  nu_mult = c(),
-  zeta_intervals = c(),
-  zeta_mult = c()
+  tol = 10^-10,
+  maxiter = 100
 )
 }
 \arguments{
@@ -44,11 +38,6 @@ inversionModel(
 \item{K}{Nx1 matrix - Land area}
 
 \item{t_ij}{NxN matrix - Travel times across all possible locations.}
-
-\item{tol}{Int - tolerance factor}
-
-\item{maxiter}{Integer - Maximum number of iterations for convergence.
-Default maxiter=1000.}
 
 \item{alpha}{Float - Utility parameter that determines preferences for
 consumption.}
@@ -66,6 +55,11 @@ consumption.}
 \item{mu}{Float - Floorspace prod function: output elast wrt capital, 1-mu wrt land.}
 
 \item{eta}{Float - Congestion force}
+
+\item{tol}{Int - tolerance factor}
+
+\item{maxiter}{Integer - Maximum number of iterations for convergence.
+Default maxiter=1000.}
 
 \item{zeta_intervals}{TODO}
 

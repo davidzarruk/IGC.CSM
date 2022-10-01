@@ -27,9 +27,7 @@ wages_inversion = function(N,
                            L_j,
                            nu_init=0.05,
                            tol=10^-10,
-                           maxiter=10000,
-                           nu_mult=c(),
-                           nu_intervals=c()){
+                           maxiter=10000){
   
   # Settings
   outerdiff = Inf
@@ -69,21 +67,6 @@ wages_inversion = function(N,
     } else if(iter>1000000){
       break
     }
-    
-    # if(length(nu_mult) > 0){
-    #   if(length(nu_mult) != length(nu_intervals)){
-    #     stop(
-    #       "The array nu_mult must have the same size as the array nu_intervals."
-    #     )
-    #   } else{
-    #     nu_mult2 = c(1, nu_mult)
-    #     iiter = 1
-    #     while(iter > nu_intervals[iiter] & iiter <= length(nu_intervals)){
-    #       iiter = iiter+1
-    #     }
-    #     nu=nu_init*nu_mult2[iiter]
-    #   }
-    # }
     print(paste(outerdiff, iter))
   }
   

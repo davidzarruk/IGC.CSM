@@ -13,21 +13,21 @@ solveModel(
   K,
   a,
   b,
-  maxiter,
-  tol = 10^-10,
-  alpha,
-  beta,
-  theta,
-  mu,
-  delta,
-  lambda,
-  rho,
-  eta,
-  epsilon,
   w_eq,
   u_eq,
   Q_eq,
-  ttheta_eq
+  ttheta_eq,
+  alpha = 0.7,
+  beta = 0.7,
+  theta = 7,
+  mu = 0.3,
+  delta = 0.3585,
+  lambda = 0.01,
+  rho = 0.9094,
+  eta = 0.1548,
+  epsilon = 0.01,
+  maxiter = 100,
+  tol = 10^-10
 )
 }
 \arguments{
@@ -47,8 +47,13 @@ solveModel(
 
 \item{b}{Nx1 array - Vector of amenities in each location}
 
-\item{maxiter}{Integer - Maximum number of iterations for convergence.
-Default maxiter=1000.}
+\item{w_eq}{Nx1 array - Initial vector of wages}
+
+\item{u_eq}{Nx1 array - Initial vector of welfare}
+
+\item{Q_eq}{Nx1 array - Initial price for floorspace}
+
+\item{ttheta_eq}{Nx1 array - Share of floorspace used commercially}
 
 \item{alpha}{Float - Exp. share in consumption, 1-alpha exp. share in housing}
 
@@ -68,13 +73,8 @@ Default maxiter=1000.}
 
 \item{epsilon}{Float - Parameter that transforms travel times to commuting costs}
 
-\item{w_eq}{Nx1 array - Initial vector of wages}
-
-\item{u_eq}{Nx1 array - Initial vector of welfare}
-
-\item{Q_eq}{Nx1 array - Initial price for floorspace}
-
-\item{ttheta_eq}{Nx1 array - Share of floorspace used commercially}
+\item{maxiter}{Integer - Maximum number of iterations for convergence.
+Default maxiter=1000.}
 
 \item{zeta}{Float - convergence parameter}
 }

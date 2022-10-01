@@ -56,6 +56,29 @@ solveModel = function(N,
                       maxiter=100){
 
   # Formatting of input data
+  if(is.data.frame(L_i)){
+    L_i = array(unlist(L_i), dim(L_i))
+  } else if(is.null(dim(L_i))){
+    L_i = array(L_i, dim=c(N,1))
+  }
+  
+  if(is.data.frame(L_j)){
+    L_j = array(unlist(L_j), dim(L_j))
+  } else if(is.null(dim(L_j))){
+    L_j = array(L_j, dim=c(N,1))
+  }
+  if(is.data.frame(K)){
+    K = array(unlist(K), dim(K))  
+  } else if(is.null(dim(K))){
+    K = array(K, dim=c(N,1))
+  }
+  if(is.data.frame(Q)){
+    Q = array(unlist(Q), dim(Q))
+  } else if(is.null(dim(Q))){
+    Q = array(Q, dim=c(N,1))
+  }
+  t_ij = array(unlist(t_ij), dim(t_ij))  
+
   D = commuting_matrix(t_ij=t_ij, epsilon = epsilon)
   tau = D$tau
   L_i = array(unlist(L_i),dim(L_i))

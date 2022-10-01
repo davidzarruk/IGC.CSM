@@ -73,3 +73,23 @@ Equilibrium values.
 Function to invert model, so amenities, wages, productivities, and development density
 are chosen to match model to data.
 }
+\examples{
+N=5
+L_i = c(104, 437, 356, 305, 187)
+L_j = c(86, 278, 189, 180, 99)
+Q = c(2123, 1576, 1371, 1931, 1637)
+K = c(0.44, 1.45, 1.15, 0.87, 0.58)
+t_ij = rbind(c(0.0, 6.6, 5.5, 5.6, 6.4),
+             c(6.7, 0.0, 3.9, 4.6, 4.4),
+             c(5.5, 3.9, 0.0, 2.8, 3.0),
+             c(5.6, 4.6, 2.8, 0.0, 2.7),
+             c(6.4, 4.4, 3.0, 2.7, 0.0))
+
+inversionModel(N=N,
+               L_i=L_i,
+               L_j=L_j,
+               Q=Q,
+               K=K,
+               t_ij=t_ij)
+               
+}

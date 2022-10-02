@@ -11,7 +11,7 @@ av_income_simple(lambda_ij_i, w_tr)
 \item{lambda_ij_i}{NxN matrix - Probability of individuals in each
 location of working in each location.}
 
-\item{w}{NxS - Wages in each location in each sector.}
+\item{w_tr}{NxS - Wages in each location in each sector.}
 }
 \description{
 Computes average income in each location, which is the weighted average of

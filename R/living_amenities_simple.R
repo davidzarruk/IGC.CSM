@@ -3,17 +3,17 @@
 #' @param theta Float - Parameter that governs the reallocation of workers across
 #'     locations in the city. This parameter measures how sensible are migration
 #'     flows within the city to changes in real income.
-#' @param alpha Float - Para     
-#' @param Q Nx1 matrix - Floor space prices.
+#' @param N Integer - Number of locations.
 #' @param L_i Nx1 matrix - Total residents.
 #' @param W_i Nx1 matrix - Market access measure in each location.
+#' @param Q Nx1 matrix - Floor space prices.
+#' @param K Nx1 matrix - Land area
+#' @param alpha Float - Para     
 #' @param t_ij NxN matrix - Travel times across locations.
 #' @param rho Float - decay parameter for amenities.
 #' @param eta Float - congestion force
 #'
 #' @return Matrix with the amenity distribution of living in each location.
-#'
-#' @examples
 living_amenities_simple = function(theta,
                                    N,
                                    L_i,

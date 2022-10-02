@@ -3,11 +3,7 @@
 #'
 #' @param lambda_ij_i NxN matrix - Probability of individuals in each
 #'     location of working in each location.
-#' @param w NxS - Wages in each location in each sector.
-#'
-#' @return
-#'
-#' @examples
+#' @param w_tr NxS - Wages in each location in each sector.
 av_income_simple = function(lambda_ij_i,
                             w_tr){
   

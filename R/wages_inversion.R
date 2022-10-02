@@ -17,8 +17,6 @@
 #'
 #' @return A list with equilibrium wages and probability of workers in each
 #'     location working in every other location.
-#'
-#' @examples
 wages_inversion = function(N,
                            w_init,
                            theta,

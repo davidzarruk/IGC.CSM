@@ -11,11 +11,15 @@ living_amenities_simple(theta, N, L_i, W_i, Q, K, alpha, t_ij, rho, eta)
 locations in the city. This parameter measures how sensible are migration
 flows within the city to changes in real income.}
 
+\item{N}{Integer - Number of locations.}
+
 \item{L_i}{Nx1 matrix - Total residents.}
 
 \item{W_i}{Nx1 matrix - Market access measure in each location.}
 
 \item{Q}{Nx1 matrix - Floor space prices.}
+
+\item{K}{Nx1 matrix - Land area}
 
 \item{alpha}{Float - Para}
 

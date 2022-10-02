@@ -1,16 +1,14 @@
 #' Computes productivity levels in each location
 #'
 #' @param N Float - Number of locations.
-#' @param w Nx1 matrix - wages in each location.
 #' @param Q Nx1 matrix - Floorspace prices in each location.
+#' @param w Nx1 matrix - wages in each location.
 #' @param L_j Nx1 matrix - Employment in each location.
 #' @param K Nx1 matrix - Land in each location.
 #' @param t_ij NxN matrix - Travel times matrix.
 #' @param delta Float - decay parameter agglomeration.
 #' @param lambda Float - agglomeration force.
-#' @return
-#'
-#' @examples
+#' @param beta Float - Output elasticity wrt labor
 productivity = function(N,
                         Q,
                         w,

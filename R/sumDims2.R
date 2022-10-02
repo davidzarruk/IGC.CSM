@@ -5,8 +5,6 @@
 #' @param dimension Dimension to collapse the array.
 #'
 #' @return An array that has been collapsed along the given dimension.
-#'
-#' @examples
 sumDims2 = function(array, dimension){
   dim1 = length(dim(array))
   keep_dims = setdiff(seq(1, dim1, length.out = dim1), c(dimension))

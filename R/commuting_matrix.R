@@ -3,8 +3,6 @@
 #' @param epsilon Float - Parameter that transforms travel times to commuting costs
 #' 
 #' @return A NxN matrix of commuting costs
-#' 
-#' @examples 
 commuting_matrix = function(t_ij,
                             epsilon){
   tau = exp(epsilon*t_ij)

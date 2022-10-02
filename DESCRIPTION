@@ -1,12 +1,11 @@
 Package: IGCities
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Title: Simulate Impact of Different Urban Policies Through a General Equilibrium Model
+Version: 0.1.0
+Authors@R: c(
+    person("David", "Zarruk", "", "davidzarruk@gmail.com", role = c("aut", "cre")),
+    person("Roman", "Zarate", "D.", "rd.zarate40@gmail.com", role = c("aut")))
+Description: Develops a General Equilibrium (GE) Model, which estimates key variables such as wages, the number of residents and workers, the prices of the floor space, and its distribution between commercial and residential use. By doing so, the model allows understanding the economic influence of different urban policies.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1

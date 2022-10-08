@@ -62,7 +62,7 @@ inversionModel = function(N,
                           eta=0.1548,
                           nu_init=0.005,
                           tol=10^-10,
-                          maxiter=100){
+                          maxiter=1000){
   
   # Formatting of input data
   if(is.data.frame(L_i)){

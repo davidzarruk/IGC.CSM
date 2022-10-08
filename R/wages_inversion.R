@@ -60,13 +60,13 @@ wages_inversion = function(N,
     iter = iter+1;
     
     if(iter %% 10 == 0){
-      cat(paste0("Iteration: ", iter, ", error: ", round(outerdiff, 3), ".\n"))
+      cat(paste0("Iteration: ", iter, ", error: ", round(outerdiff, 10), ".\n"))
     }
   }
   if(outerdiff<=tol){
-    cat(paste0("Converged after ", iter, " iterations. Error=", round(outerdiff, 3), ".\n"))
+    cat(paste0("Converged after ", iter, " iterations. Error=", round(outerdiff, 10), ".\n"))
   } else{
-    cat(paste0("Reached maximum number of iterations (", iter, "). Error=", round(outerdiff, 3), ".\n"))
+    cat(paste0("Reached maximum number of iterations (", iter, "). Error=", round(outerdiff, 10), ".\n"))
   }
   
   return(list(w=w, w_tr=w_tr, W_i=W_i, lambda_ij_i=lambda_ij_i))

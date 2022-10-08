@@ -22,6 +22,8 @@ productivity(N, Q, w, L_j, K, t_ij, delta, lambda, beta)
 \item{delta}{Float - decay parameter agglomeration.}
 
 \item{lambda}{Float - agglomeration force.}
+
+\item{beta}{Float - Output elasticity wrt labor}
 }
 \description{
 Computes productivity levels in each location

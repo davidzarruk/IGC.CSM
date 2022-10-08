@@ -10,8 +10,6 @@
 #'
 #' @return An array with dimensions equal to the "largest" input array. It is
 #' the result of applying the operator element-wise to both input arrays.
-#'
-#' @examples
 array_operator = function(array1, array2, operation){
   if(is.array(array1) == FALSE){
     array1 = array(array1, dim=dim(array2))

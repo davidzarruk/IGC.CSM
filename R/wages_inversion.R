@@ -17,8 +17,6 @@
 #'
 #' @return A list with equilibrium wages and probability of workers in each
 #'     location working in every other location.
-#'
-#' @examples
 wages_inversion = function(N,
                            w_init,
                            theta,
@@ -61,16 +59,14 @@ wages_inversion = function(N,
     
     iter = iter+1;
     
-    if(iter>100){
-      nu = nu_init*10;
-    } else if(iter>1000){
-      nu = nu_init*10;
-    } else if(iter>1000000){
-      break
-    }
     if(iter %% 10 == 0){
       cat(paste0("Iteration: ", iter, ", error: ", round(outerdiff, 3), ".\n"))
     }
+  }
+  if(outerdiff<=tol){
+    cat(paste0("Converged after ", iter, " iterations. Error=", round(outerdiff, 3), ".\n"))
+  } else{
+    cat(paste0("Reached maximum number of iterations (", iter, "). Error=", round(outerdiff, 3), ".\n"))
   }
   
   return(list(w=w, w_tr=w_tr, W_i=W_i, lambda_ij_i=lambda_ij_i))

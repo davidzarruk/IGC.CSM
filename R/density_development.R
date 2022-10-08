@@ -10,10 +10,6 @@
 #' @param alpha Float - Utility parameter that determines preferences for
 #'     consumption.
 #' @param mu Float - Floorspace prod function: output elast wrt capita, 1-mu wrt land.     
-#'
-#' @return
-#'
-#' @examples
 density_development = function(Q,
                                K,
                                w,

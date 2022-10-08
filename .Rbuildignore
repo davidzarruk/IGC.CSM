@@ -1,3 +1,9 @@
 ^IGCities\.Rproj$
 ^\.Rproj\.user$
 data*
+^LICENSE\.md$
+Untitled.R
+documents*
+example_parameters.R
+main.R
+main_test.R

@@ -28,7 +28,7 @@ solveModel(
   epsilon = 0.01,
   zeta = 0.95,
   tol = 10^-10,
-  maxiter = 100
+  maxiter = 1000
 )
 }
 \arguments{

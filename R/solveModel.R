@@ -84,7 +84,7 @@ solveModel = function(N,
                       epsilon=0.01,
                       zeta=0.95,
                       tol=10^-10,
-                      maxiter=100){
+                      maxiter=1000){
 
   # Formatting of input data
   if(is.data.frame(L_i)){
@@ -220,13 +220,13 @@ solveModel = function(N,
     ttheta = zeta*ttheta + (1-zeta)*ttheta_upd
     L_i = lambda_i*L
     if(iter %% 10 == 0){
-      cat(paste0("Iteration: ", iter, ", error: ", round(outerdiff, 3), ".\n"))
+      cat(paste0("Iteration: ", iter, ", error: ", round(outerdiff, 10), ".\n"))
     }
   }
   if(outerdiff<=tol){
-    cat(paste0("Converged after ", iter, " iterations. Error=", round(outerdiff, 3), ".\n"))
+    cat(paste0("Converged after ", iter, " iterations. Error=", round(outerdiff, 10), ".\n"))
   } else{
-    cat(paste0("Reached maximum number of iterations (", iter, "). Error=", round(outerdiff, 3), ".\n"))
+    cat(paste0("Reached maximum number of iterations (", iter, "). Error=", round(outerdiff, 10), ".\n"))
   }
   
   return(list(w=w, W_i=W_i, B=B, A=A, Q=Q, lambda_ij_i=lambda_ij_i, L_i=L_i, L_j=L_j,

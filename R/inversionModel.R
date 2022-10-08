@@ -28,7 +28,7 @@
 #'
 #' @examples
 #' N=5
-#' L_i = c(104, 437, 356, 305, 187)
+#' L_i = c(63, 261, 213, 182, 113)
 #' L_j = c(86, 278, 189, 180, 99)
 #' Q = c(2123, 1576, 1371, 1931, 1637)
 #' K = c(0.44, 1.45, 1.15, 0.87, 0.58)
@@ -87,6 +87,9 @@ inversionModel = function(N,
     Q = array(Q, dim=c(N,1))
   }
   t_ij = array(unlist(t_ij), dim(t_ij))  
+  
+  # Normalize L_i to have the same size as L_j
+  L_i=L_i*sum(L_j)/sum(L_i)
   
   # Initialization
   w_init=array(1, dim=c(N,1))

@@ -31,7 +31,7 @@
 #'
 #' @examples
 #' N=5
-#' L_i = c(104, 437, 356, 305, 187)
+#' L_i = c(63, 261, 213, 182, 113)
 #' L_j = c(86, 278, 189, 180, 99)
 #' Q = c(2123, 1576, 1371, 1931, 1637)
 #' K = c(0.44, 1.45, 1.15, 0.87, 0.58)
@@ -128,6 +128,9 @@ solveModel = function(N,
     ttheta_eq = array(ttheta_eq, dim=c(N,1))
   }
   
+  # Normalize L_i to have the same size as L_j
+  L_i=L_i*sum(L_j)/sum(L_i)
+  
   D = commuting_matrix(t_ij=t_ij, epsilon = epsilon)
   tau = D$tau
   L_i = array(unlist(L_i),dim(L_i))
@@ -208,7 +211,6 @@ solveModel = function(N,
     z_Q = array_operator(Q, Q_upd, '-')
     z_theta = array_operator(ttheta, ttheta_upd, '-')
     outerdiff = max(c(max(abs(z_w)), max(abs(z_L)), max(abs(z_Q)), max(abs(z_theta))))
-    #outerdiff = max(c(max(abs(z_w)), max(abs(z_Q)), max(abs(z_theta))))
     iter = iter+1
     
     # 11 New vector of variables
@@ -220,6 +222,11 @@ solveModel = function(N,
     if(iter %% 10 == 0){
       cat(paste0("Iteration: ", iter, ", error: ", round(outerdiff, 3), ".\n"))
     }
+  }
+  if(outerdiff<=tol){
+    cat(paste0("Converged after ", iter, " iterations. Error=", round(outerdiff, 3), ".\n"))
+  } else{
+    cat(paste0("Reached maximum number of iterations (", iter, "). Error=", round(outerdiff, 3), ".\n"))
   }
   
   return(list(w=w, W_i=W_i, B=B, A=A, Q=Q, lambda_ij_i=lambda_ij_i, L_i=L_i, L_j=L_j,

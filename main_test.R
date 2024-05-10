@@ -6,11 +6,11 @@
 install.packages('devtools')
 library('devtools')
 
-install_github("davidzarruk/IGCities", force = TRUE)
-library(IGCities)
+install_github("davidzarruk/IGC.CSM", force = TRUE)
+library(IGC.CSM)
 
-#setwd("C:/Users/romandzarate/GitHub/IGCities")
-setwd('/Users/zarruk/Documents/IGCities/')
+#setwd("C:/Users/romandzarate/GitHub/IGC.CSM")
+setwd('/Users/zarruk/Documents/IGC.CSM/')
 
 rm(list = ls())
 

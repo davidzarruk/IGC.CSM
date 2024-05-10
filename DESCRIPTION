@@ -1,10 +1,10 @@
-Package: IGCities
+Package: IGC.CSM
 Title: Simulate Impact of Different Urban Policies Through a General Equilibrium Model
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: c(
     person(given="David", family="Zarruk", email="davidzarruk@gmail.com", role = c("aut", "cre")),
     person(given="Roman", family="Zarate", email="rd.zarate40@gmail.com", role = c("aut")))
-Description: Develops a General Equilibrium (GE) Model, which estimates key variables such as wages, the number of residents and workers, the prices of the floor space, and its distribution between commercial and residential use. By doing so, the model allows understanding the economic influence of different urban policies.
+Description: Develops a General Equilibrium (GE) Model, which estimates key variables such as wages, the number of residents and workers, the prices of the floor space, and its distribution between commercial and residential use, as in Ahlfeldt et al., (2015) <https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA10876>. By doing so, the model allows understanding the economic influence of different urban policies.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

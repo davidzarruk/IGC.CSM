@@ -25,6 +25,7 @@
 #' @param tol Int - tolerance factor
 #' @param maxiter Integer - Maximum number of iterations for convergence.
 #'     Default maxiter=1000.
+#' @param verbose Boolean - Equal to TRUE to print verbose.
 #' 
 #' @return Counterfactual values.
 #' @export
@@ -84,7 +85,8 @@ solveModel = function(N,
                       epsilon=0.01,
                       zeta=0.95,
                       tol=10^-10,
-                      maxiter=1000){
+                      maxiter=1000,
+                      verbose=FALSE){
 
   # Formatting of input data
   if(is.data.frame(L_i)){
@@ -146,7 +148,10 @@ solveModel = function(N,
   iter = 0;
   zeta_init = zeta;
   
-  cat("Solving model...\n")
+  if(verbose==TRUE){
+    cat("Solving model...\n")
+  }
+  
   while(outerdiff>tol & iter < maxiter){
     # 1) Labor supply equation
     w_tr = aperm(array(w, dim=c(N,1)), c(2,1));
@@ -219,13 +224,13 @@ solveModel = function(N,
     w = zeta*w + (1-zeta)*w_upd
     ttheta = zeta*ttheta + (1-zeta)*ttheta_upd
     L_i = lambda_i*L
-    if(iter %% 10 == 0){
+    if((iter %% 10 == 0) & (verbose==TRUE)){
       cat(paste0("Iteration: ", iter, ", error: ", round(outerdiff, 10), ".\n"))
     }
   }
-  if(outerdiff<=tol){
+  if((outerdiff<=tol) & (verbose==TRUE)){
     cat(paste0("Converged after ", iter, " iterations. Error=", round(outerdiff, 10), ".\n"))
-  } else{
+  } else if(verbose==TRUE){
     cat(paste0("Reached maximum number of iterations (", iter, "). Error=", round(outerdiff, 10), ".\n"))
   }
   

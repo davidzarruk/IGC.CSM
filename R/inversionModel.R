@@ -22,6 +22,7 @@
 #' @param tol Int - tolerance factor
 #' @param maxiter Integer - Maximum number of iterations for convergence.
 #'     Default maxiter=1000.
+#' @param verbose Boolean - Equal to TRUE to print verbose.
 #'
 #' @return Equilibrium values.
 #' @export
@@ -62,7 +63,8 @@ inversionModel = function(N,
                           eta=0.1548,
                           nu_init=0.005,
                           tol=10^-10,
-                          maxiter=1000){
+                          maxiter=1000,
+                          verbose=FALSE){
   
   # Formatting of input data
   if(is.data.frame(L_i)){
@@ -108,7 +110,8 @@ inversionModel = function(N,
                        L_j=L_j,
                        nu_init=nu_init,
                        tol=tol,
-                       maxiter=maxiter)
+                       maxiter=maxiter,
+                       verbose=verbose)
   
   # Equilibrium wages
   w = WI$w

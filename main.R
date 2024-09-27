@@ -46,11 +46,11 @@ L_bar  = 1
 H_bar_rest = 18
 
 # Loaded parameters
-H_bar = read.csv("data/H_bar.csv")
-tau = read.csv("data/tau.csv")
-L_j_data = read.csv("data/L_j_data.csv")
-lambda_is_i = read.csv("data/lambda_is_i.csv")
-lambda_i = read.csv("data/lambda_i.csv")
+H_bar = read.csv("data/Data for model/H_bar.csv")
+tau = read.csv("data/Data for model/tau.csv")
+L_j_data = read.csv("data/Data for model/L_j_data.csv")
+lambda_is_i = read.csv("data/Data for model/lambda_is_i.csv")
+lambda_i = read.csv("data/Data for model/lambda_i.csv")
 
 
 #-------------------------------------#

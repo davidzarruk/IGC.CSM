@@ -14,6 +14,7 @@
 #'     Default tol=10^-10.
 #' @param maxiter Integer - Maximum number of iterations for convergence.
 #'     Default maxiter=10000.
+#' @param verbose Boolean - Equal to TRUE to print verbose.
 #'
 #' @return A list with equilibrium wages and probability of workers in each
 #'     location working in every other location.
@@ -25,7 +26,8 @@ wages_inversion = function(N,
                            L_j,
                            nu_init=0.05,
                            tol=10^-10,
-                           maxiter=10000){
+                           maxiter=10000,
+                           verbose=FALSE){
   
   # Settings
   outerdiff = Inf
@@ -33,7 +35,10 @@ wages_inversion = function(N,
   iter = 0
   nu = nu_init
   
-  cat("Inverting wages...\n")
+  if(verbose==TRUE){
+    cat("Inverting wages...\n")
+  }
+  
   while(outerdiff>tol & iter<maxiter){
     # 1) Labor supply
     # Indirect utility
@@ -59,13 +64,13 @@ wages_inversion = function(N,
     
     iter = iter+1;
     
-    if(iter %% 10 == 0){
+    if((iter %% 10 == 0) & (verbose==TRUE)){
       cat(paste0("Iteration: ", iter, ", error: ", round(outerdiff, 10), ".\n"))
     }
   }
-  if(outerdiff<=tol){
+  if((outerdiff<=tol) & (verbose==TRUE)){
     cat(paste0("Converged after ", iter, " iterations. Error=", round(outerdiff, 10), ".\n"))
-  } else{
+  } else if (verbose==TRUE){
     cat(paste0("Reached maximum number of iterations (", iter, "). Error=", round(outerdiff, 10), ".\n"))
   }
   
